@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Avara — the WhatsApp ops desk for B2B distributors</title>
-<meta name="description" content="Avara turns WhatsApp into a durable ops desk for distributors: invoices, balances, payments and supplier documents — handled end to end, audited at every step.">
+<title>Avara | The WhatsApp ops desk for B2B distributors</title>
+<meta name="description" content="Avara turns WhatsApp into a durable ops desk for distributors: invoices, balances, payments and supplier documents, handled end to end and audited at every step.">
 <meta name="theme-color" content="#0E6B51">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,7 +31,7 @@
     --maxw:1140px;
     --font:'Plus Jakarta Sans',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
   }
-
+ 
   html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
   body{
     margin:0;
@@ -48,21 +49,21 @@
   p{margin:0}
   ul{margin:0;padding:0;list-style:none}
   button{font:inherit;color:inherit;cursor:pointer}
-
+ 
   .wrap{width:min(100% - 40px,var(--maxw));margin-inline:auto}
   .section{padding:clamp(58px,8vw,106px) 0}
   .center{text-align:center}
-
+ 
   .eyebrow{
     display:inline-flex;align-items:center;gap:8px;
     font-size:.72rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;
     color:var(--green);
   }
   .eyebrow::before{content:"";width:22px;height:2px;background:var(--green);border-radius:2px}
-
+ 
   .h2{font-size:clamp(1.85rem,3.4vw,2.9rem)}
   .lede{color:var(--muted);font-size:clamp(1rem,1.3vw,1.13rem);max-width:60ch}
-
+ 
   /* ---------- Buttons ---------- */
   .btn{
     display:inline-flex;align-items:center;justify-content:center;gap:9px;
@@ -79,7 +80,7 @@
   .btn-light:hover{background:#f2f0e8}
   .btn .arw{transition:transform .2s ease}
   .btn:hover .arw{transform:translateX(3px)}
-
+ 
   /* ---------- Nav ---------- */
   .nav{
     position:sticky;top:0;z-index:60;
@@ -112,7 +113,7 @@
   .nav-toggle{display:none;margin-left:auto;background:#fff;border:1px solid var(--line-2);border-radius:12px;padding:9px 11px}
   .nav-toggle span{display:block;width:18px;height:2px;background:var(--ink);border-radius:2px}
   .nav-toggle span+span{margin-top:4px}
-
+ 
   /* ---------- Hero ---------- */
   .hero{position:relative;padding:clamp(38px,5vw,64px) 0 clamp(56px,7vw,90px);overflow:hidden}
   .hero::before{
@@ -145,7 +146,7 @@
   }
   .hero-note span{display:inline-flex;align-items:center;gap:7px}
   .tick{width:15px;height:15px;flex:none;color:var(--green)}
-
+ 
   /* ---------- Phone mockup ---------- */
   .hero-visual{position:relative;display:flex;justify-content:center}
   .phone{
@@ -194,7 +195,7 @@
   .bubble:nth-child(4){animation-delay:1.2s}
   .bubble:nth-child(5){animation-delay:1.75s}
   @keyframes pop{to{opacity:1;transform:none}}
-
+ 
   .doc-card{
     margin-top:7px;background:rgba(255,255,255,.72);border-radius:9px;padding:8px 9px;
     display:flex;align-items:center;gap:8px;border:1px solid rgba(11,21,18,.07);
@@ -215,7 +216,7 @@
       repeating-linear-gradient(0deg,#0B1512 0 3px,transparent 3px 6px);
     background-blend-mode:multiply;opacity:.85;border:3px solid #fff;
   }
-
+ 
   .float-card{
     position:absolute;background:#fff;border-radius:14px;padding:11px 14px;
     box-shadow:var(--shadow-sm);border:1px solid var(--line);
@@ -231,7 +232,7 @@
   .fc-1 .dot{background:var(--green-soft);color:var(--green)}
   .fc-2 .dot{background:#FDF3D6;color:#A4791B}
   @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
-
+ 
   /* ---------- Integration strip ---------- */
   .strip{border-block:1px solid var(--line);background:#fff}
   .strip-inner{
@@ -246,13 +247,13 @@
     opacity:.82;
   }
   .chip i{width:6px;height:6px;border-radius:50%;background:var(--green);opacity:.55;display:block}
-
+ 
   /* ---------- Cards / grid ---------- */
   .grid{display:grid;gap:16px}
   .g3{grid-template-columns:repeat(3,1fr)}
   .g2{grid-template-columns:repeat(2,1fr)}
   .g6{grid-template-columns:repeat(3,1fr)}
-
+ 
   .card{
     background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
     padding:26px 24px;transition:transform .25s ease,box-shadow .25s ease,border-color .25s;
@@ -265,7 +266,7 @@
     background:var(--green-soft);color:var(--green);margin-bottom:16px;
   }
   .ico svg{width:20px;height:20px}
-
+ 
   /* ---------- Problem / value rows ---------- */
   .problem{background:var(--ink);color:#F4F3EC;border-radius:var(--radius-lg);padding:clamp(30px,4.5vw,58px)}
   .problem .eyebrow{color:var(--lime)}
@@ -283,7 +284,7 @@
   }
   .problem-item b{display:block;font-size:.98rem;font-weight:700;color:#fff}
   .problem-item span{font-size:.88rem;color:rgba(244,243,236,.68);line-height:1.55;display:block;margin-top:3px}
-
+ 
   /* ---------- Steps ---------- */
   .steps{display:grid;gap:18px;margin-top:44px;counter-reset:step}
   .step{
@@ -297,13 +298,15 @@
   }
   .step h3{font-size:1.02rem}
   .step p{margin-top:8px;font-size:.9rem;color:var(--muted)}
-
+ 
   /* ---------- Metrics ---------- */
   .metrics{background:var(--green);color:#fff;border-radius:var(--radius-lg);padding:clamp(30px,4vw,48px) clamp(22px,4vw,50px)}
   .metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
   .metric b{display:block;font-size:clamp(1.6rem,3vw,2.3rem);font-weight:800;letter-spacing:-.03em;line-height:1}
   .metric span{display:block;margin-top:9px;font-size:.82rem;color:rgba(255,255,255,.74);line-height:1.45}
-
+  .metrics-label{font-size:.72rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--lime);margin-bottom:26px;display:block}
+  .price-note{margin-top:26px;text-align:center;font-size:.85rem;color:var(--muted);max-width:62ch;margin-inline:auto}
+ 
   /* ---------- Security ---------- */
   .sec-list{display:grid;gap:14px;margin-top:38px}
   .sec-item{
@@ -314,14 +317,14 @@
   .sec-item .ico svg{width:17px;height:17px}
   .sec-item b{display:block;font-size:.95rem}
   .sec-item p{margin-top:4px;font-size:.885rem;color:var(--muted);line-height:1.55}
-
+ 
   /* ---------- Roles ---------- */
   .roles{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
   .role{
     padding:9px 16px;border-radius:999px;background:#fff;border:1px solid var(--line);
     font-size:.85rem;font-weight:700;color:var(--ink-2);
   }
-
+ 
   /* ---------- Pricing ---------- */
   .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px;align-items:start}
   .price{
@@ -343,7 +346,7 @@
   .price li{display:grid;grid-template-columns:auto 1fr;gap:9px;font-size:.875rem;color:var(--ink-2);line-height:1.5}
   .price li svg{width:15px;height:15px;color:var(--green);margin-top:3px;flex:none}
   .price .btn{width:100%;margin-top:auto}
-
+ 
   /* ---------- FAQ ---------- */
   .faq{display:grid;gap:10px;margin-top:40px;max-width:820px;margin-inline:auto}
   details{
@@ -363,7 +366,7 @@
   }
   details[open] summary::after{transform:rotate(-135deg)}
   details .answer{padding:0 0 20px;font-size:.91rem;color:var(--muted);line-height:1.65;max-width:70ch}
-
+ 
   /* ---------- Final CTA ---------- */
   .cta{
     position:relative;overflow:hidden;background:var(--ink);color:#fff;
@@ -380,7 +383,7 @@
   .cta-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:30px;position:relative}
   .cta .btn-ghost{color:#fff;border-color:rgba(255,255,255,.28)}
   .cta .btn-ghost:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.5)}
-
+ 
   /* ---------- Footer ---------- */
   footer{border-top:1px solid var(--line);margin-top:clamp(56px,8vw,100px);background:#fff}
   .foot-grid{
@@ -396,11 +399,11 @@
     display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;align-items:center;
     padding:20px 0 30px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted);
   }
-
+ 
   /* ---------- Reveal ---------- */
   [data-reveal]{opacity:0;transform:translateY(16px);transition:opacity .6s cubic-bezier(.2,.7,.3,1),transform .6s cubic-bezier(.2,.7,.3,1)}
   [data-reveal].in{opacity:1;transform:none}
-
+ 
   /* ---------- Responsive ---------- */
   @media (max-width:980px){
     .g6{grid-template-columns:repeat(2,1fr)}
@@ -445,7 +448,7 @@
 </style>
 </head>
 <body>
-
+ 
 <!-- ============ NAV ============ -->
 <header class="nav" id="nav">
   <div class="wrap nav-inner">
@@ -453,7 +456,7 @@
       <span class="logo-mark" aria-hidden="true"></span>
       avara
     </a>
-
+ 
     <nav class="nav-links" id="navLinks" aria-label="Main">
       <a href="#product">Product</a>
       <a href="#how">How it works</a>
@@ -461,20 +464,20 @@
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
     </nav>
-
+ 
     <div class="nav-cta">
-      <a class="btn btn-ghost" href="#pricing">Sign in</a>
-      <a class="btn btn-primary" href="#cta">Book a demo</a>
+      <a class="btn btn-ghost" href="#" data-link="signIn">Sign in</a>
+      <a class="btn btn-primary" href="#cta" data-link="demo">Book a demo</a>
     </div>
-
+ 
     <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle menu">
       <span></span><span></span>
     </button>
   </div>
 </header>
-
+ 
 <main id="top">
-
+ 
   <!-- ============ HERO ============ -->
   <section class="hero">
     <div class="wrap hero-grid">
@@ -483,25 +486,25 @@
         <h1>Your customers already<br>text you. <span class="mark">Now it closes.</span></h1>
         <p class="sub">
           Avara turns WhatsApp into a working ops desk. Customers ask for an invoice, check a balance
-          or pay — and it actually happens: PDF created, payment link sent, records updated, receipt
-          delivered. No ticket queue, no re-typing, no "let me check and get back to you."
+          or pay, and it actually happens: order found, PDF created, payment link sent, records updated,
+          receipt delivered. No ticket queue, no re-typing, no "let me check and get back to you."
         </p>
-
+ 
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#cta">
+          <a class="btn btn-primary" href="#cta" data-link="demo">
             Book a 20-min demo
             <svg class="arw" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
           <a class="btn btn-ghost" href="#how">See how it works</a>
         </div>
-
+ 
         <div class="hero-note">
-          <span><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Live in about a week</span>
-          <span><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> No ERP replacement</span>
+          <span><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Guided pilot setup</span>
+          <span><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Runs alongside your ERP</span>
           <span><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Every action audited</span>
         </div>
       </div>
-
+ 
       <!-- Phone mockup -->
       <div class="hero-visual">
         <div class="float-card fc-1">
@@ -510,14 +513,14 @@
           </span>
           <div>Payment received<small>Rp 48.250.000 · QRIS</small></div>
         </div>
-
+ 
         <div class="float-card fc-2">
           <span class="dot" aria-hidden="true">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></svg>
           </span>
           <div>Supplier invoice read<small>12 line items extracted</small></div>
         </div>
-
+ 
         <div class="phone" role="img" aria-label="WhatsApp conversation with the Avara assistant, showing an invoice being created and sent, followed by a QRIS payment code.">
           <div class="phone-screen">
             <div class="wa-head">
@@ -527,13 +530,13 @@
                 <div class="wa-status">online · biasanya balas dalam hitungan detik</div>
               </div>
             </div>
-
+ 
             <div class="wa-body">
               <div class="bubble in">
                 Halo, tolong kirim invoice untuk PO-2291 ya. Totalnya yg 48 juta itu.
                 <span class="t">09:41</span>
               </div>
-
+ 
               <div class="bubble out">
                 Siap, Bu Rina. Invoice <strong>INV-2026-0847</strong> sudah dibuat dan saya lampirkan di sini.
                 <div class="doc-card">
@@ -545,12 +548,12 @@
                 </div>
                 <span class="t">09:41</span>
               </div>
-
+ 
               <div class="bubble in">
                 Bisa bayar pakai QRIS?
                 <span class="t">09:42</span>
               </div>
-
+ 
               <div class="bubble out">
                 Bisa. Ini kode QRIS-nya, berlaku 30 menit.
                 <div class="qr-row">
@@ -562,13 +565,13 @@
                 </div>
                 <span class="t">09:42</span>
               </div>
-
+ 
               <div class="bubble in">
                 Sudah saya bayar. Makasih!
                 <span class="t">09:58</span>
               </div>
             </div>
-
+ 
             <div style="flex:none;padding:9px 12px;background:#F5F3EC;border-top:1px solid rgba(11,21,18,.06)">
               <div style="background:#fff;border-radius:999px;padding:8px 14px;font-size:.72rem;color:#9AA79F">
                 Ketik pesan
@@ -579,33 +582,33 @@
       </div>
     </div>
   </section>
-
+ 
   <!-- ============ INTEGRATION STRIP ============ -->
   <div class="strip">
     <div class="wrap strip-inner">
       <span class="strip-label">Works with</span>
-      <span class="chip"><i></i> WhatsApp Cloud API</span>
-      <span class="chip"><i></i> DOKU SNAP BI</span>
-      <span class="chip"><i></i> QRIS &amp; Virtual Account</span>
-      <span class="chip"><i></i> Mistral OCR</span>
-      <span class="chip"><i></i> Supabase</span>
-      <span class="chip"><i></i> Inngest</span>
+      <span class="chip"><i></i> WhatsApp Business Platform</span>
+      <span class="chip"><i></i> DOKU</span>
+      <span class="chip"><i></i> QRIS</span>
+      <span class="chip"><i></i> Virtual Account</span>
+      <span class="chip"><i></i> E-wallet</span>
+      <span class="chip"><i></i> CSV import &amp; export</span>
     </div>
   </div>
-
+ 
   <!-- ============ PROBLEM ============ -->
   <section class="section">
     <div class="wrap">
       <div class="problem" data-reveal>
         <span class="eyebrow">The daily reality</span>
         <h2>Your order desk is a phone that never stops buzzing.</h2>
-
+ 
         <div class="problem-list">
           <div class="problem-item">
             <span class="num">01</span>
             <div>
               <b>Invoices wait on people</b>
-              <span>Someone has to open the system, find the PO, build the PDF, name the file, and send it — usually between three other calls.</span>
+              <span>Someone has to open the system, find the PO, build the PDF, name the file, and send it, usually between three other calls.</span>
             </div>
           </div>
           <div class="problem-item">
@@ -626,29 +629,29 @@
       </div>
     </div>
   </section>
-
+ 
   <!-- ============ PRODUCT / FEATURES ============ -->
   <section class="section" id="product" style="padding-top:0">
     <div class="wrap">
       <div style="max-width:660px" data-reveal>
         <span class="eyebrow">What Avara does</span>
-        <h2 class="h2" style="margin-top:16px">An assistant with real write access — and a short leash.</h2>
+        <h2 class="h2" style="margin-top:16px">An assistant with real write access, on a short leash.</h2>
         <p class="lede" style="margin-top:16px">
           Avara isn't a chatbot that answers questions and hands off. It performs the work in your
           records, and it does it the same way a careful staff member would: check first, act once,
           log everything.
         </p>
       </div>
-
+ 
       <div class="grid g6" style="margin-top:44px">
         <article class="card" data-reveal>
           <div class="ico" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></svg>
           </div>
           <h3>Invoices on demand</h3>
-          <p>A customer asks; Avara creates the invoice, assigns a number that can't collide, renders the PDF and sends it in the same thread.</p>
+          <p>A customer quotes a PO number. Avara finds the order, creates the invoice with a number that can't collide, renders the PDF and sends it in the same thread.</p>
         </article>
-
+ 
         <article class="card" data-reveal>
           <div class="ico" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
@@ -656,42 +659,42 @@
           <h3>Balances and payment links</h3>
           <p>Outstanding balance in one message. Pay by Virtual Account, QRIS or e-wallet without a single phone call to your finance team.</p>
         </article>
-
+ 
         <article class="card" data-reveal>
           <div class="ico" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2"/><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M8 7v4M16 7v4"/></svg>
           </div>
           <h3>Supplier documents, read properly</h3>
-          <p>Suppliers send a photo of an invoice. Avara extracts line items, totals, tax ID and invoice number — then validates before anything is filed.</p>
+          <p>Suppliers send a photo of an invoice. Avara extracts line items, totals, tax ID and invoice number, then validates before anything is filed. Anything unclear goes to your team for review.</p>
         </article>
-
+ 
         <article class="card" data-reveal>
           <div class="ico" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
           </div>
           <h3>Outbound that follows the rules</h3>
-          <p>Reminders and document requests go out on schedule — inside WhatsApp's template windows, and throttled per tenant so one busy branch never starves the rest.</p>
+          <p>Reminders and document requests go out on schedule, inside WhatsApp's template rules, and throttled per account and per number so sending never trips WhatsApp's limits.</p>
         </article>
-
+ 
         <article class="card" data-reveal>
           <div class="ico" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
           </div>
-          <h3>Every action on record</h3>
-          <p>Each tool call — its input, output, result and error — is written to an audit log. When something looks off, you know exactly where to look.</p>
+          <h3>Approval before it acts</h3>
+          <p>Set thresholds by amount, customer or action. Anything above the line waits for an approver in your dashboard, and nothing moves until someone decides.</p>
         </article>
-
+ 
         <article class="card" data-reveal>
           <div class="ico" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3.5-7.1"/><path d="M21 3v6h-6"/></svg>
           </div>
           <h3>It never loses its place</h3>
-          <p>If a step fails halfway, Avara retries only that step. Work already confirmed stays confirmed — no duplicate invoices, no double-sent messages.</p>
+          <p>If a step fails halfway, Avara retries only that step. Work already confirmed stays confirmed, so there are no duplicate invoices. Messages are never blindly resent: if a send is unclear, your team reviews it.</p>
         </article>
       </div>
     </div>
   </section>
-
+ 
   <!-- ============ HOW IT WORKS ============ -->
   <section class="section" id="how" style="background:#fff;border-block:1px solid var(--line)">
     <div class="wrap">
@@ -700,36 +703,37 @@
         <h2 class="h2" style="margin-top:16px">Three steps, and your WhatsApp becomes a desk.</h2>
         <p class="lede" style="margin-top:16px">No migration project. No new app for your customers to install.</p>
       </div>
-
+ 
       <div class="steps">
         <article class="step" data-reveal>
           <h3>Connect your number</h3>
-          <p>Point your WhatsApp Business number at Avara. Your customers keep texting the same number they already know — nothing changes on their side.</p>
+          <p>Point your WhatsApp Business number at Avara. Your customers keep texting the same number they already know, and nothing changes on their side.</p>
         </article>
         <article class="step" data-reveal>
           <h3>Tell it your rules</h3>
-          <p>Set your invoice format, numbering, payment methods and approval thresholds. Import your parties and outstanding balances.</p>
+          <p>Set your invoice format, numbering, payment methods and approval thresholds. Import your customers, open orders and outstanding balances from a CSV.</p>
         </article>
         <article class="step" data-reveal>
-          <h3>Let it run — and watch</h3>
+          <h3>Let it run, and watch</h3>
           <p>Avara handles requests end to end. Your team reviews the dashboard, handles the exceptions, and steps in whenever a conversation needs a human.</p>
         </article>
       </div>
     </div>
   </section>
-
+ 
   <!-- ============ METRICS ============ -->
   <section class="section">
     <div class="wrap">
       <div class="metrics" data-reveal>
+        <span class="metrics-label">Design targets, built into the architecture</span>
         <div class="metrics-grid">
           <div class="metric">
             <b>&lt;500ms</b>
-            <span>Webhook acknowledgement, so WhatsApp never retries a message you already handled</span>
+            <span>Target webhook acknowledgement. Duplicate deliveries that still arrive are recognised and dropped</span>
           </div>
           <div class="metric">
             <b>0</b>
-            <span>Duplicate invoice numbers — uniqueness is enforced by the database, not by hope</span>
+            <span>Duplicate invoice numbers. Uniqueness is enforced by the database, not by hope</span>
           </div>
           <div class="metric">
             <b>0%</b>
@@ -743,7 +747,7 @@
       </div>
     </div>
   </section>
-
+ 
   <!-- ============ SECURITY ============ -->
   <section class="section" id="security" style="padding-top:0">
     <div class="wrap">
@@ -752,10 +756,10 @@
         <h2 class="h2" style="margin-top:16px">It touches money and invoices. It's built like it.</h2>
         <p class="lede" style="margin-top:16px">
           An assistant with write access is only useful if it's predictable. These aren't features
-          you configure — they're how Avara is put together.
+          you configure. They're how Avara is put together.
         </p>
       </div>
-
+ 
       <div class="sec-list">
         <div class="sec-item" data-reveal>
           <div class="ico" aria-hidden="true">
@@ -763,10 +767,10 @@
           </div>
           <div>
             <b>Tenants can't see each other</b>
-            <p>Isolation is enforced in the database itself, row by row — not by a filter in the app that someone might forget.</p>
+            <p>Isolation is enforced in the database itself, row by row, not by a filter in the app that someone might forget.</p>
           </div>
         </div>
-
+ 
         <div class="sec-item" data-reveal>
           <div class="ico" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -776,65 +780,64 @@
             <p>Every WhatsApp and payment notification is cryptographically verified before a single record is touched. Unsigned requests are rejected at the door.</p>
           </div>
         </div>
-
+ 
         <div class="sec-item" data-reveal>
           <div class="ico" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 20V9"/></svg>
           </div>
           <div>
             <b>PDFs are built in a sealed box</b>
-            <p>Invoice rendering runs isolated, with no internet access and no credentials — so a malicious document can't reach anything it shouldn't.</p>
+            <p>Invoice rendering runs isolated, with no internet access and no credentials, so a malicious document can't reach anything it shouldn't.</p>
           </div>
         </div>
-
+ 
         <div class="sec-item" data-reveal>
           <div class="ico" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9"/><path d="M12 7v5l3 2"/></svg>
           </div>
           <div>
             <b>Payments can only land once</b>
-            <p>Payment notifications are idempotent — the same confirmation arriving twice still means one payment. The payment provider is the source of truth, never the chat.</p>
+            <p>Every payment notification is signature-checked and deduplicated, so the same confirmation arriving twice still means one payment. The payment provider is the source of truth, never the chat.</p>
           </div>
         </div>
-
+ 
         <div class="sec-item" data-reveal>
           <div class="ico" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
           </div>
           <div>
             <b>Nothing happens off the record</b>
-            <p>Every tool execution is stored with its input, output and outcome — the same log your ops team reads when a customer disputes something.</p>
+            <p>Every tool execution is stored with its input, output and outcome. It is the same log your ops team reads when a customer disputes something.</p>
           </div>
         </div>
-
+ 
         <div class="sec-item" data-reveal>
           <div class="ico" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           </div>
           <div>
             <b>A human is always one message away</b>
-            <p>When a request is unusual, ambiguous, or fails validation twice, Avara escalates to your team instead of guessing.</p>
+            <p>When a request is unusual, ambiguous, or fails validation twice, Avara hands the conversation to your team and tells the customer someone will reply shortly. It doesn't guess.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
-
+ 
   <!-- ============ ROLES ============ -->
   <section class="section" style="padding-top:0">
     <div class="wrap center">
       <span class="eyebrow" style="justify-content:center">Built for the whole desk</span>
-      <h2 class="h2" style="margin-top:16px;max-width:24ch;margin-inline:auto">One assistant, four very different jobs.</h2>
+      <h2 class="h2" style="margin-top:16px;max-width:24ch;margin-inline:auto">One assistant, four sides of the desk.</h2>
       <div class="roles" style="justify-content:center">
         <span class="role">Distributor ops</span>
         <span class="role">Finance &amp; AR</span>
-        <span class="role">Key account managers</span>
-        <span class="role">Procurement</span>
-        <span class="role">Warehouse coordinators</span>
+        <span class="role">Your B2B customers</span>
+        <span class="role">Your suppliers</span>
       </div>
     </div>
   </section>
-
+ 
   <!-- ============ PRICING ============ -->
   <section class="section" id="pricing" style="background:#fff;border-block:1px solid var(--line)">
     <div class="wrap">
@@ -842,58 +845,61 @@
         <span class="eyebrow" style="justify-content:center">Pricing</span>
         <h2 class="h2" style="margin-top:16px">Start with one number. Grow to every branch.</h2>
         <p class="lede" style="margin-top:16px;margin-inline:auto">
-          Priced per distributor, not per message. No charge for the conversations your customers
-          were going to start anyway.
+          A flat platform fee per distributor. WhatsApp message fees are set by Meta and shown
+          separately on your invoice, never buried in the plan.
         </p>
       </div>
-
+ 
       <div class="pricing-grid">
         <div class="price" data-reveal>
           <h3>Pilot</h3>
           <div class="amount"><b>Rp 0</b><span>/ 30 days</span></div>
           <p class="desc">One number, one team, real conversations. Prove it on your own orders before you commit.</p>
           <ul>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> 1 tenant, 2 seats</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Up to 300 conversations</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> 1 WhatsApp number, 2 seats</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Up to 300 handled requests</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Invoices, balances, payment links</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Sandbox payment gateway</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Approval on every invoice by default</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Payment links in DOKU sandbox until your merchant account is live</li>
           </ul>
           <a class="btn btn-ghost" href="#cta">Start the pilot</a>
         </div>
-
+ 
         <div class="price featured" data-reveal>
           <span class="badge">Most chosen</span>
           <h3>Growth</h3>
-          <div class="amount"><b>Rp 6.9jt</b><span>/ month</span></div>
+          <div class="amount"><b>Rp 6.9jt</b><span>/ month + WhatsApp fees</span></div>
           <p class="desc">For distributors running a real order desk on WhatsApp across several product lines.</p>
           <ul>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Up to 5 tenants, unlimited seats</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Up to 5 WhatsApp numbers, unlimited seats</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Approval rules by amount, customer and action</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Invoicing + payments (VA, QRIS, e-wallet)</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Supplier document OCR</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Outbound reminders &amp; templates</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> 12-month audit log</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Per-tenant throttling &amp; concurrency</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> CSV export for your accounting system</li>
           </ul>
-          <a class="btn btn-primary" href="#cta">Book a demo</a>
+          <a class="btn btn-primary" href="#cta" data-link="demo">Book a demo</a>
         </div>
-
+ 
         <div class="price" data-reveal>
           <h3>Enterprise</h3>
           <div class="amount"><b>Let's talk</b></div>
           <p class="desc">Multi-entity distributor groups with regional operations and compliance requirements.</p>
           <ul>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Unlimited tenants and entities</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Region pinning &amp; SSO</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Multiple legal entities under one group</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Approval policies per entity</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Custom SLA &amp; dedicated support</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Extended audit retention</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Onboarding &amp; data migration help</li>
           </ul>
-          <a class="btn btn-ghost" href="#cta">Talk to sales</a>
+          <a class="btn btn-ghost" href="#cta" data-link="demo">Talk to sales</a>
         </div>
       </div>
+      <p class="price-note">"Handled request" = one customer or supplier request taken through to a result. WhatsApp fees are what Meta charges per message and appear as a separate line on your invoice.</p>
     </div>
   </section>
-
+ 
   <!-- ============ FAQ ============ -->
   <section class="section" id="faq">
     <div class="wrap">
@@ -901,59 +907,69 @@
         <span class="eyebrow" style="justify-content:center">Questions</span>
         <h2 class="h2" style="margin-top:16px">The ones ops managers always ask.</h2>
       </div>
-
+ 
       <div class="faq">
         <details open>
           <summary>Do we have to replace our ERP or accounting system?</summary>
-          <div class="answer">No. Avara sits in front of your records and writes into them — orders, invoices, payment status. Your ERP stays where it is. In the pilot we map the fields you actually need, not the whole chart of accounts.</div>
+          <div class="answer">No. Avara runs alongside your ERP. It keeps its own records of orders, invoices and payments: you load customers, open orders and balances in by CSV, and export invoices and payments back out for your accounting system. In the pilot we map only the fields you actually need, not the whole chart of accounts.</div>
         </details>
-
+ 
         <details>
           <summary>What happens if a customer sends the same message twice?</summary>
-          <div class="answer">Nothing extra. WhatsApp can deliver a message more than once, so Avara deduplicates on the message ID before it does any work. The second copy is recognised and ignored — you won't get two invoices for one request.</div>
+          <div class="answer">Nothing extra. WhatsApp can deliver a message more than once, so Avara deduplicates on the message ID before it does any work. The second copy is recognised and ignored, so you won't get two invoices for one request.</div>
         </details>
-
+ 
         <details>
           <summary>Can a payment be recorded twice?</summary>
-          <div class="answer">No. Payment notifications are deduplicated both at the orchestration layer and at the database level, and the payment provider's notification — not the conversation — is always the source of truth for whether money arrived.</div>
+          <div class="answer">No. Payment notifications are deduplicated both at the orchestration layer and at the database level, and the payment provider's notification, not the conversation, is always the source of truth for whether money arrived.</div>
         </details>
-
+ 
         <details>
           <summary>What if the AI misreads a request or builds a bad action?</summary>
-          <div class="answer">Every action is validated against a strict schema before it runs. If it doesn't match, it fails closed: nothing is executed, the attempt is logged, and Avara retries only that decision — never the steps that already succeeded. If it fails twice, a human is looped in.</div>
+          <div class="answer">Every action is validated against a strict schema before it runs. If it doesn't match, it fails closed: nothing is executed, the attempt is logged, and Avara retries only that decision, never the steps that already succeeded. If it fails twice, the conversation is handed to your team and the customer is told someone will reply shortly.</div>
         </details>
-
+ 
         <details>
           <summary>Who on my team can see what?</summary>
           <div class="answer">Access is scoped per tenant and enforced in the database. Staff only see the tenants they're members of, and every action is attributed in the audit log. Cross-tenant leakage is tested for in CI, not just assumed.</div>
         </details>
-
+ 
         <details>
           <summary>Can we require approval before anything is sent?</summary>
-          <div class="answer">Yes. You can set thresholds by amount, by customer, or by action type. Anything above the line waits for a human in the dashboard; everything below goes out immediately.</div>
+          <div class="answer">Yes. Set thresholds by amount, by customer, or by action type. Anything that matches waits in the dashboard for someone with approver rights, and nothing is sent while it waits. If no one decides in time, the action is cancelled, never auto-approved. New accounts start with approval on every invoice and payment link until you set your own thresholds.</div>
         </details>
-
+ 
         <details>
           <summary>Which payment methods are supported?</summary>
-          <div class="answer">Virtual Account, QRIS and e-wallet through DOKU, with settlement in IDR. Payment instructions are delivered straight into the WhatsApp thread the customer is already in.</div>
+          <div class="answer">Virtual Account, QRIS and e-wallet through DOKU, with settlement in IDR. Payment instructions are delivered straight into the WhatsApp thread the customer is already in. Until your DOKU merchant account is active, payment links run in sandbox mode and the customer is told they are test links.</div>
         </details>
-
+ 
+        <details>
+          <summary>What does WhatsApp messaging cost?</summary>
+          <div class="answer">Meta charges businesses per message on the WhatsApp Business Platform, and since October 2026 that includes replies inside the 24-hour customer window. Those fees are listed separately from your Avara plan, so you always see what messaging actually costs.</div>
+        </details>
+ 
+        <details>
+          <summary>Where is our data processed?</summary>
+          <div class="answer">Your records are stored in a single database region named in your contract. To understand requests and read supplier documents, the text and files involved are processed by our AI providers. Every provider that touches your data, and where it processes it, is listed on our Data Processing page.</div>
+        </details>
+ 
         <details>
           <summary>How long does onboarding take?</summary>
-          <div class="answer">Most distributors are live on a single number in about a week: connect the number, configure invoice format and numbering, import parties and balances, approve outbound templates, then run a supervised week alongside your current process.</div>
+          <div class="answer">Setup is guided: connect your number, configure invoice format and numbering, import customers, open orders and balances, then run supervised alongside your current process. Two steps depend on outside approvals, Meta's review of your message templates and activation of your DOKU merchant account, so we start the pilot on everything else while those come through.</div>
         </details>
       </div>
     </div>
   </section>
-
+ 
   <!-- ============ CTA ============ -->
   <section class="section" id="cta" style="padding-top:0">
     <div class="wrap">
       <div class="cta" data-reveal>
-        <h2>See it handle a real invoice, on your own number.</h2>
+        <h2>See it handle a real invoice request, live.</h2>
         <p>Twenty minutes, one live conversation, one PDF. If it doesn't save your desk an hour a day, you've lost twenty minutes.</p>
         <div class="cta-actions">
-          <a class="btn btn-light" href="#">
+          <a class="btn btn-light" href="#cta" data-link="demo">
             Book a demo
             <svg class="arw" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
@@ -962,9 +978,9 @@
       </div>
     </div>
   </section>
-
+ 
 </main>
-
+ 
 <!-- ============ FOOTER ============ -->
 <footer>
   <div class="wrap">
@@ -974,9 +990,9 @@
           <span class="logo-mark" aria-hidden="true"></span>
           avara
         </a>
-        <p>The WhatsApp ops desk for B2B distributors. Invoices, balances, payments and supplier documents — handled end to end.</p>
+        <p>The WhatsApp ops desk for B2B distributors. Invoices, balances, payments and supplier documents, handled end to end.</p>
       </div>
-
+ 
       <div class="foot-col">
         <h4>Product</h4>
         <ul>
@@ -986,7 +1002,7 @@
           <li><a href="#pricing">Pricing</a></li>
         </ul>
       </div>
-
+ 
       <div class="foot-col">
         <h4>Company</h4>
         <ul>
@@ -996,7 +1012,7 @@
           <li><a href="#">Blog</a></li>
         </ul>
       </div>
-
+ 
       <div class="foot-col">
         <h4>Legal</h4>
         <ul>
@@ -1007,21 +1023,30 @@
         </ul>
       </div>
     </div>
-
+ 
     <div class="foot-bottom">
       <span>© 2026 Avara. All rights reserved.</span>
       <span>Made for distributors in Indonesia · IDR settlement</span>
     </div>
   </div>
 </footer>
-
+ 
 <script>
+  /* Link config: fill these before publishing.
+     demo   = booking page (Calendly, Google Form, etc.)
+     signIn = dashboard login on Cloudflare Pages */
+  const LINKS = { demo: '#cta', signIn: '#' };
+  document.querySelectorAll('[data-link]').forEach(a => {
+    const url = LINKS[a.dataset.link];
+    if (url) a.setAttribute('href', url);
+  });
+ 
   /* Sticky nav shadow */
   const nav = document.getElementById('nav');
   const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 8);
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
-
+ 
   /* Mobile nav */
   const toggle = document.getElementById('navToggle');
   const links = document.getElementById('navLinks');
@@ -1035,7 +1060,7 @@
       toggle.setAttribute('aria-expanded', 'false');
     }
   });
-
+ 
   /* Scroll reveal */
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const targets = document.querySelectorAll('[data-reveal]');
