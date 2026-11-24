@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0F1A16">
+<title>Avara PRD Update</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* VOICE work: a CTO briefing leadership and investors, decisive and evidenced
+   IDEA the order-to-cash loop as a metro line; each slide is a station with its proof
+   PICTURE one large chart or diagram per slide, drawn at stage size
+   COLOUR Avara brand: ink #0B1512, paper #F4F3EC, lime #DFF56A accent, green #2FB58A, coral #FF7A59 for problems; light theme darkens accents for contrast
+   TYPE Plus Jakarta Sans 800 titles + 500 body
+   LAYOUT 1920x1080 stage scaled to fit; title band, picture fills the middle, sources and audience on the foot */
+:root{color-scheme:dark;--bg:#0B1512;--sf:#13221D;--sf2:#1A2E27;--ln:rgba(244,243,236,.16);--ink:#F4F3EC;--mu:#B9C7C0;--lime:#DFF56A;--grn:#2FB58A;--cor:#FF7A59;--on:#0B1512;--rgb:244,243,236;--track:rgba(244,243,236,.08);--out:#060C0A;--pn:#0F1A16;--shadow:rgba(0,0,0,.5);
+  --ph:calc(64px + env(safe-area-inset-bottom,0px))}
+:root[data-theme=light]{color-scheme:light;--bg:#F4F3EC;--sf:#FFFFFF;--sf2:#E6E5DA;--ln:rgba(11,21,18,.16);--ink:#0B1512;--mu:#46554E;--lime:#4F6E00;--grn:#1B7F5E;--cor:#C8441E;--on:#FFFFFF;--rgb:11,21,18;--track:rgba(11,21,18,.08);--out:#D6D5CA;--pn:#FFFFFF;--shadow:rgba(11,21,18,.18)}
+*{box-sizing:border-box;min-width:0}
+html,body{height:100%;margin:0;background:var(--out);color:var(--ink);font:500 16px/1.4 'Plus Jakarta Sans',system-ui,sans-serif;overflow:hidden;-webkit-tap-highlight-color:transparent}
+#app{position:fixed;inset:0 0 var(--ph) 0;overflow:hidden;touch-action:pan-y pinch-zoom}
+#stage{position:absolute;left:50%;top:50%;width:1920px;height:1080px;background:var(--bg);transform-origin:center;overflow:hidden;border-radius:8px;transition:background .3s}
+.slide{position:absolute;inset:0;padding:60px 96px 120px;display:flex;flex-direction:column;visibility:hidden;opacity:0}
+.slide.on{visibility:visible;opacity:1;animation:sin .7s cubic-bezier(.2,.8,.2,1)}
+.slide.on.back{animation:sinb .7s cubic-bezier(.2,.8,.2,1)}
+@keyframes sin{from{opacity:0;transform:translateX(80px);clip-path:inset(0 0 0 30%)}to{opacity:1;transform:none;clip-path:inset(0)}}
+@keyframes sinb{from{opacity:0;transform:translateX(-80px);clip-path:inset(0 30% 0 0)}to{opacity:1;transform:none;clip-path:inset(0)}}
+.k{font-size:28px;color:var(--lime);font-weight:600}
+h1{font-size:64px;line-height:1.06;letter-spacing:-.02em;margin:10px 0 0;font-weight:800;max-width:1680px;text-wrap:balance}
+h2{font-size:36px;line-height:1.1;margin:0;font-weight:800}
+p{margin:0}
+.lead{font-size:32px;color:var(--mu);margin-top:18px;max-width:1500px}
+.body{flex:1;display:grid;gap:36px;margin-top:34px;min-height:0}
+.foot{position:absolute;left:96px;right:96px;bottom:32px;display:flex;justify-content:space-between;align-items:flex-end;gap:40px}
+.src{font-size:19px;color:var(--mu);max-width:1350px;line-height:1.35}
+.src b{color:var(--ink);font-weight:700}
+.aud{display:flex;gap:10px;flex:none;align-items:center}
+.aud span{font-size:18px;font-weight:700;padding:6px 14px;border-radius:999px;border:2px solid var(--ln);color:var(--mu)}
+.aud span.hit{border-color:var(--lime);color:var(--bg);background:var(--lime)}
+.aud .pg{border:0;padding:0 0 0 8px}
+.card{background:var(--sf);border:2px solid var(--ln);border-radius:20px;padding:26px 30px}
+.card h3{font-size:30px;margin:0 0 10px;line-height:1.15}
+.card p,.card li{font-size:25px;color:var(--mu);line-height:1.38}
+.card ul{margin:0;padding-left:28px}
+.card li+li{margin-top:6px}
+.big{font-size:80px;font-weight:800;line-height:1;letter-spacing:-.03em;color:var(--lime)}
+.lbl{font-size:24px;color:var(--mu);margin-top:8px}
+.tag{display:inline-block;font-size:20px;font-weight:700;padding:5px 14px;border-radius:999px;background:var(--sf2);color:var(--lime);border:2px solid var(--ln)}
+.cor{color:var(--cor)}.lim{color:var(--lime)}.grn{color:var(--grn)}.ink{color:var(--ink)}
+.note{font-size:22px;color:var(--mu);border-left:6px solid var(--lime);padding:6px 0 6px 18px}
+.key{display:inline-block;width:18px;height:18px;border-radius:4px;vertical-align:-2px;margin-right:6px}
+[data-a]{opacity:0}
+.slide.on [data-a]{animation:up .8s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i,0)*100ms + 250ms)}
+.slide.on [data-a=pop]{animation-name:pop}
+.slide.on [data-a=wipe]{animation-name:wipe}
+@keyframes up{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{opacity:0;transform:scale(.6)}70%{opacity:1;transform:scale(1.06)}100%{opacity:1;transform:none}}
+@keyframes wipe{from{opacity:1;clip-path:inset(0 100% 0 0)}to{opacity:1;clip-path:inset(0)}}
+.draw{stroke-dasharray:var(--len,2000);stroke-dashoffset:var(--len,2000)}
+.slide.on .draw{animation:draw 1.8s .3s cubic-bezier(.6,0,.2,1) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.bar{position:relative;height:46px;background:var(--track);border-radius:10px;overflow:hidden}
+.bar i{position:absolute;inset:0 auto 0 0;width:0;border-radius:10px;transition:width 1.3s cubic-bezier(.2,.8,.2,1) .4s}
+.slide.on .bar i{width:var(--w)}
+.gap{border-radius:16px;padding:16px 18px;font-size:22px;font-weight:700;background:var(--cor);color:var(--on);min-height:96px;display:flex;align-items:flex-end;opacity:0}
+.slide.on .gap{animation:fix 1.6s forwards;animation-delay:calc(var(--g)*120ms + .3s)}
+@keyframes fix{0%{opacity:0;transform:rotateX(90deg);background:var(--cor)}25%{opacity:1;transform:rotateX(0);background:var(--cor)}62%{transform:rotateX(90deg);background:var(--cor)}63%{background:var(--grn)}100%{opacity:1;transform:rotateX(0);background:var(--grn)}}
+.cell{border-radius:10px;font-size:21px;font-weight:700;display:flex;align-items:center;justify-content:center;text-align:center;padding:8px;min-height:62px}
+.edge{position:absolute;top:0;bottom:0;width:110px;z-index:3;cursor:pointer;background:none;border:0}
+#ePrev{left:0}#eNext{right:0}
+
+/* control panel: one row on wide screens, a bottom sheet on phones */
+#panel{position:fixed;left:0;right:0;bottom:0;height:var(--ph);display:flex;align-items:center;gap:8px;
+  padding:0 max(12px,env(safe-area-inset-right)) env(safe-area-inset-bottom,0px) max(12px,env(safe-area-inset-left));
+  background:var(--pn);border-top:1px solid var(--ln);z-index:6;transition:transform .3s,background .3s}
+#panel button,#panel select,#bShow{font:600 15px 'Plus Jakarta Sans',system-ui,sans-serif;color:var(--ink);background:var(--sf2);border:1px solid var(--ln);border-radius:10px;height:44px;padding:0 14px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap}
+#panel select{appearance:auto}
+#panel button:focus-visible,#panel select:focus-visible,#bShow:focus-visible{outline:3px solid var(--lime);outline-offset:2px}
+#panel button[aria-pressed=true]{background:var(--lime);color:var(--bg);border-color:var(--lime)}
+#bPrev,#bNext{width:48px;padding:0;font-size:20px}
+#cnt{font:700 15px 'Plus Jakarta Sans',system-ui,sans-serif;color:var(--mu);min-width:62px;text-align:center}
+#prog{flex:1;height:6px;background:var(--track);border-radius:6px;overflow:hidden;min-width:40px}
+#prog i{display:block;height:100%;width:0;background:var(--lime);transition:width .5s}
+#more{display:flex;align-items:center;gap:8px}
+.grp{display:flex;align-items:center;gap:8px}
+.sl{display:none;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mu)}
+.seg{display:flex;gap:4px}
+#jump{max-width:280px}
+#bMore{display:none!important}
+#bShow{position:fixed;right:max(14px,env(safe-area-inset-right));bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:8;display:none;opacity:.6;box-shadow:0 6px 20px var(--shadow);height:48px;padding:0 18px}
+#bShow:hover,#bShow:focus-visible{opacity:1}
+body.hide #panel{transform:translateY(100%)}
+body.hide #app{inset:0}
+body.hide #bShow{display:inline-flex}
+#rot{position:absolute;top:18px;left:0;right:0;text-align:center;font-size:14px;font-weight:600;color:var(--mu);pointer-events:none;display:none;padding:0 16px}
+@media (max-width:1240px){
+  #bMore{display:inline-flex!important}
+  #more{position:fixed;right:max(10px,env(safe-area-inset-right));left:max(10px,env(safe-area-inset-left));bottom:calc(var(--ph) + 10px);margin-left:auto;max-width:440px;
+    display:none;flex-direction:column;align-items:stretch;gap:14px;padding:18px;background:var(--pn);border:1px solid var(--ln);border-radius:18px;box-shadow:0 16px 48px var(--shadow);
+    max-height:calc(100% - var(--ph) - 24px);overflow:auto;overscroll-behavior:contain;z-index:7}
+  #more.open{display:flex}
+  .grp{flex-direction:column;align-items:stretch;gap:6px}
+  .sl{display:block}
+  #jump{max-width:none;width:100%}
+  #more button,#more select{height:48px;font-size:16px}
+  .seg button{flex:1}
+  #more .row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+}
+@media (max-width:1240px) and (max-height:520px){
+  #more{max-width:660px;grid-template-columns:1fr 1fr;gap:10px 14px;padding:12px 14px}
+  #more.open{display:grid}
+  #more .grp:first-child{grid-column:1/-1}
+  #more button,#more select{height:40px;font-size:15px}
+  .grp{gap:4px}.sl{font-size:11px}
+}
+@media (max-width:420px){#panel{gap:6px}#cnt{min-width:52px;font-size:14px}#bMore{padding:0 12px}}
+@media (max-height:520px){:root{--ph:calc(54px + env(safe-area-inset-bottom,0px))}#panel>button,#panel>#bMore{height:40px}}
+@media (orientation:portrait) and (max-width:760px){#rot{display:block}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}[data-a]{opacity:1}.draw{stroke-dashoffset:0}.slide.on .bar i{width:var(--w)}.gap{background:var(--grn);opacity:1}}
+</style>
+</head>
+<body>
+<div id="app"><p id="rot" data-i='Putar HP ke posisi landscape untuk tampilan lebih besar. Geser kiri atau kanan untuk pindah slide.'>Rotate your phone for a bigger view. Swipe left or right to change slides.</p><div id="stage">
+
+<!-- 1 TITLE -->
+<section class="slide" data-aud="cs inv" data-title="Title" data-ti="Judul">
+  <p class="k" data-a data-i='Update CTO untuk pimpinan dan investor · PRD v2.0 ke v3.1 · 23 November 2026'>CTO update to leadership and investors · PRD v2.0 to v3.1 · 23 November 2026</p>
+  <div class="body" style="grid-template-columns:1.1fr .9fr;align-items:center">
+    <div>
+      <h1 style="font-size:80px" data-a data-i='Kami mengubah asisten WhatsApp menjadi platform order-to-cash yang siap diaudit'>We turned a WhatsApp assistant into an audit-grade order-to-cash platform</h1>
+      <p class="lead" data-a data-i='Apa yang kami putuskan, apa yang sempat bermasalah, berapa biayanya, dan empat keputusan yang saya butuhkan dari forum ini.'>What we decided, what broke along the way, what it costs, and the four decisions I need from this room.</p>
+      <div style="display:flex;gap:52px;margin-top:52px">
+        <div data-a><div class="big" data-count="5">0</div><div class="lbl" data-i='versi PRD'>PRD versions</div></div>
+        <div data-a><div class="big" data-count="30">0</div><div class="lbl" data-i='kelompok kebutuhan'>requirement groups</div></div>
+        <div data-a><div class="big" data-count="241">0</div><div class="lbl" data-i='kebutuhan yang bisa diuji'>testable requirements</div></div>
+        <div data-a><div class="big" data-count="33">0</div><div class="lbl" data-i='pertanyaan terbuka'>open questions</div></div>
+      </div>
+    </div>
+    <svg id="ring1" viewBox="0 0 800 800" style="width:100%;height:780px"></svg>
+  </div>
+  <div class="foot"><p class="src" data-i='<b>Sumber:</b> AgaaS-AVARA/26 PRD MVP v3.1 (23 Nov 2026); hitungan dari tabelnya. Versi: v2.0, v2.1 (20 Nov), v2.2 (21 Nov), v3.0 dan v3.1 (23 Nov).'><b>Source:</b> AgaaS-AVARA/26 PRD MVP v3.1 (23 Nov 2026); counts from its tables. Versions: v2.0, v2.1 (20 Nov), v2.2 (21 Nov), v3.0 and v3.1 (23 Nov).</p><div class="aud"></div></div>
+</section>
+
+<!-- 2 EXEC SUMMARY -->
+<section class="slide" data-aud="cs inv" data-title="Executive summary" data-ti="Ringkasan eksekutif">
+  <p class="k" data-a data-i='Kalau hanya sempat baca satu slide'>If you only read one slide</p>
+  <h1 data-a data-i='Persempit cakupan, hitung harga terhadap skenario terburuk, bangun jejak audit lebih dulu'>Narrow the scope, price against the worst case, build the audit trail first</h1>
+  <div class="body" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+    <div class="card" data-a data-i='<span class="tag">Keputusan kami</span><ul style="margin-top:18px"><li><b class="ink">Hanya penjualan:</b> satu siklus dari perjanjian sampai kas. Bukan ERP.</li><li><b class="ink">Paket tetap dengan kredit,</b> WhatsApp sudah termasuk harga.</li><li><b class="ink">Jejak audit sejak hari pertama:</b> tanpa hapus, nomor tanpa celah, bukti kirim.</li></ul>'><span class="tag">We decided</span><ul style="margin-top:18px"><li><b class="ink">Sales only:</b> one loop from agreement to cash. Not an ERP.</li><li><b class="ink">Fixed packages with credits,</b> WhatsApp inside the price.</li><li><b class="ink">Audit trail from day one:</b> no deletes, gapless numbers, delivery proof.</li></ul></div>
+    <div class="card" data-a data-i='<span class="tag">Angkanya</span><ul style="margin-top:18px"><li><b class="lim">95 sampai 97%</b> biaya variabel adalah WhatsApp; AI hanya Rp37 per order.</li><li><b class="lim">Semua paket</b> tetap positif di skenario terburuk (margin 5 sampai 35%).</li><li><b class="lim">$55 per bulan</b> untuk platform saat pilot; satu tenant Starter menutupnya.</li></ul>'><span class="tag">The numbers</span><ul style="margin-top:18px"><li><b class="lim">95 to 97%</b> of variable cost is WhatsApp; AI is Rp37 per order.</li><li><b class="lim">Every package</b> stays positive in the worst case (5 to 35% margin).</li><li><b class="lim">$55 a month</b> platform in pilot; one Starter tenant covers it.</li></ul></div>
+    <div class="card" data-a style="border-color:var(--lime)" data-i='<span class="tag">Yang saya butuhkan</span><ul style="margin-top:18px"><li>Jawaban tertulis BSP soal <b class="ink">penagihan Meta</b> (Q16) minggu ini.</li><li><b class="ink">Discovery pilot</b> terjadwal: giro, kas lapangan, bank (Q25, Q33).</li><li><b class="ink">Keputusan vendor LLM</b> terkait lokasi data (Q11).</li><li>Persetujuan merilis <b class="ink">pilot slice</b> pada 31 Des, bukan semuanya.</li></ul>'><span class="tag">I need</span><ul style="margin-top:18px"><li>A written BSP answer on <b class="ink">Meta billing</b> (Q16) this week.</li><li><b class="ink">Pilot discovery</b> booked: giro, field cash, banks (Q25, Q33).</li><li>An <b class="ink">LLM vendor decision</b> on data location (Q11).</li><li>Agreement to ship a <b class="ink">pilot slice</b> by 31 Dec, not everything.</li></ul></div>
+  </div>
+  <div data-a style="display:flex;gap:16px;align-items:center;margin-top:26px;flex-wrap:wrap"><span style="font-size:24px;color:var(--mu)" data-i='C-suite, buka slide'>C-suite, go to</span><span class="jumps" data-j="4 5 6 7 12 15"></span><span style="font-size:24px;color:var(--mu);margin-left:20px" data-i='Investor, buka slide'>Investors, go to</span><span class="jumps" data-j="3 9 10 11 13 14"></span></div>
+  <div class="foot"><p class="src" data-i='<b>Sumber:</b> PRD v3.1 §0, §15.3, §16.3, §16.4, §17, §18. Navigasi: tombol panah, spasi, tepi slide, swipe, atau panel. H sembunyikan panel, F layar penuh, T tema, L bahasa.'><b>Sources:</b> PRD v3.1 §0, §15.3, §16.3, §16.4, §17, §18. Navigate with arrow keys, space, the stage edges, swipe or the panel. H hides the panel, F full screen, T theme, L language.</p><div class="aud"></div></div>
+</section>
+
+<!-- 3 MARKET -->
+<section class="slide" data-aud="inv cs" data-title="Why now and where we play" data-ti="Kenapa sekarang dan posisi kita">
+  <p class="k" data-a data-i='Masa lalu: kenapa ini, kenapa sekarang, dan kenapa kami?'>Past: why this, why now, and why us?</p>
+  <h1 data-a data-i='Melampaui chat: menjawab pesan makin jadi komoditas, back office belum'>Move past the chat: answering is being commoditised, the back office is not</h1>
+  <div class="body" style="grid-template-columns:1.05fr .95fr">
+    <div style="position:relative"><svg id="map" viewBox="0 0 900 640" style="width:100%;height:640px"></svg></div>
+    <div style="display:grid;gap:16px;align-content:start">
+      <div class="card" data-a style="padding:20px 24px"><p data-i='<b class="lim">Agu 2026</b> · Meta Business Agent rilis di Indonesia, gratis diaktifkan di aplikasi WhatsApp Business.'><b class="lim">Aug 2026</b> · Meta Business Agent launched in Indonesia, free to activate in the WhatsApp Business app.</p></div>
+      <div class="card" data-a style="padding:20px 24px"><p data-i='<b class="lim">Rp3 sampai 3,5 jt/bulan</b> · Qontak membundel AI agentik ke dalam paketnya, biaya WhatsApp ditagih terpisah.'><b class="lim">Rp3 to 3.5 jt/month</b> · Qontak bundles agentic AI into its suites, with WhatsApp fees billed on top.</p></div>
+      <div class="card" data-a style="padding:20px 24px"><p data-i='<b class="lim">1 Okt 2026</b> · Meta menagih setiap balasan di jendela 24 jam (Rp356,65 per pesan layanan). Efisiensi pesan menjadi keunggulan biaya.'><b class="lim">1 Oct 2026</b> · Meta charges every reply in the 24-hour window (Rp356.65 per service message). Message efficiency becomes a cost advantage.</p></div>
+      <div class="card" data-a style="padding:20px 24px"><p data-i='<b class="lim">16 Jan 2027</b> · PP 33/2026 berlaku; catatan pembukuan wajib disimpan 10 tahun di Indonesia (UU KUP). Bukti menjadi kriteria pembelian.'><b class="lim">16 Jan 2027</b> · PP 33/2026 takes effect; bookkeeping records must be kept 10 years in Indonesia (UU KUP). Proof becomes a buying criterion.</p></div>
+      <p class="note" data-a data-i='Daftar masalah distributor masih hipotesis; belum ada pelanggan berbayar yang memvalidasinya.'>The distributor pain list is still a hypothesis; no paying customer has validated it yet.</p>
+    </div>
+  </div>
+  <div class="foot"><p class="src" data-i='<b>Sumber:</b> Dok 14 (CNBC Indonesia 11 Agu 2026; qontak.com/pricing 15 Okt 2026); Dok 25 (tarif layanan Qontak, daftar masalah belum tervalidasi); harga non-template Meta; Verihubs tentang PP 33/2026; DDTC tentang UU KUP Ps. 28(11). Posisi di peta adalah penilaian kami.'><b>Sources:</b> Dok 14 (CNBC Indonesia 11 Aug 2026; qontak.com/pricing 15 Oct 2026); Dok 25 (Qontak service rate, pain list unvalidated); Meta non-template pricing; Verihubs on PP 33/2026; DDTC on UU KUP Ps. 28(11). Map positions are our assessment.</p><div class="aud"></div></div>
+</section>
+
+<!-- 4 JOURNEY -->
+<section class="slide" data-aud="cs inv" data-title="Six problems, six decisions" data-ti="Enam masalah, enam keputusan">
+  <p class="k" data-a data-i='Dari masa lalu ke sekarang: apa yang sempat bermasalah, dan apa tindakan kami?'>Past to now: what broke along the way, and what did we do about it?</p>
+  <h1 data-a data-i='Persempit, hitung ulang harga, perkuat: enam masalah yang membentuk v3.1'>Narrow, re-price, harden: six problems that shaped v3.1</h1>
+  <svg id="tl" viewBox="0 0 1728 140" style="width:100%;height:140px;margin-top:16px"></svg>
+  <div class="body" style="grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:8px" id="dec"></div>
+  <div class="foot"><p class="src" data-i='<b>Sumber:</b> PRD v3.1 §0.1, §0.2, §15.3 (11.000 ke 6.856 pesan), §6.5 (link iOS), §16.1, FR-19, §12.3. Model keputusan baru (Jev) sempat dipertimbangkan dan tidak dipakai: hematnya sekitar Rp20 per giliran dibanding Rp396 per pesan.'><b>Sources:</b> PRD v3.1 §0.1, §0.2, §15.3 (11,000 to 6,856 messages), §6.5 (iOS links), §16.1, FR-19, §12.3. A new decision model (Jev) was considered and not adopted: it saves about Rp20 a turn against Rp396 per message.</p><div class="aud"></div></div>
+</section>
+
+<!-- 5 BOUNDARY -->
+<section class="slide" data-aud="cs" data-title="Scope boundary" data-ti="Batas cakupan">
+  <p class="k" data-a data-i='Sekarang: apa yang kami pegang, dan apa yang sengaja tidak kami bangun?'>Now: what do we own, and what do we refuse to build?</p>
+  <h1 data-a data-i='Pegang komitmen dan buktinya; serahkan buku besar ke aplikasi akuntansi'>Own the commitments and the evidence; leave the ledger to the accounting app</h1>
+  <div class="body" style="grid-template-columns:1fr">
+    <svg id="bound" viewBox="0 0 1728 560" style="width:100%;height:560px"></svg>
+    <p class="note" data-a data-i='Tidak masuk v3: pembelian dan faktur pemasok, pergerakan stok, jurnal, penerbitan Faktur Pajak, skor kredit ML, data lintas tenant, broadcast marketing, aplikasi native.'>Not in v3: purchasing and supplier invoices, stock movements, journals, Faktur Pajak issuance, ML credit scores, cross-tenant data, marketing broadcasts, native apps.</p>
+  </div>
+  <div class="foot"><p class="src" data-i='<b>Sumber:</b> PRD v3.1 §1.3 (batas), §2.1 (non-goal), §4 (modul M1 sampai M8), FR-28 (subledger ke GL), FR-17.6.'><b>Sources:</b> PRD v3.1 §1.3 (boundary), §2.1 (non-goals), §4 (modules M1 to M8), FR-28 (subledger to GL), FR-17.6.</p><div class="aud"></div></div>
+</section>
+
+<!-- 6 ARCHITECTURE -->
+<section class="slide" data-aud="cs inv" data-title="Architecture" data-ti="Arsitektur">
+  <p class="k" data-a data-i='Sekarang: bagaimana sistemnya dibangun, dan kenapa komponen ini?'>Now: how is it built, and why these parts?</p>
+  <h1 data-a data-i='Balas webhook dalam 500 ms, jalankan tiap langkah secara durable, satu database sebagai batas'>Acknowledge in 500 ms, run every step durably, keep one database as the boundary</h1>
+  <div class="body" style="grid-template-columns:1fr;gap:22px">
+    <svg id="arch" viewBox="0 0 1728 500" style="width:100%;height:500px"></svg>
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px">
+      <div class="card" data-a style="padding:18px 24px"><div class="big" style="font-size:54px">&lt;500 ms</div><div class="lbl" data-i='ack webhook, target p99'>webhook ack, p99 target</div></div>
+      <div class="card" data-a style="padding:18px 24px"><div class="big" style="font-size:54px">&lt;8 s</div><div class="lbl" data-i='balasan pertama, target p95'>first reply, p95 target</div></div>
+      <div class="card" data-a style="padding:18px 24px"><div class="big" style="font-size:54px">$55 · $249</div><div class="lbl" data-i='platform per bulan, pilot · growth'>platform per month, pilot · growth</div></div>
+      <div class="card" data-a style="padding:18px 24px"><div class="big" style="font-size:54px" data-i='1,2 jt'>1.2 M</div><div class="lbl" data-i='langkah per bulan di 30 tenant menengah'>steps a month at 30 mid-size tenants</div></div>
+    </div>
+  </div>
+  <div class="foot"><p class="src" data-i='<b>Sumber:</b> PRD v3.1 §7, §8.1 sampai §8.5, §11 (target, diverifikasi di Fase 6), §15.4. Harga vendor Nov 2026: Cloudflare Workers, Supabase, Inngest, Cloud Run Jakarta.'><b>Sources:</b> PRD v3.1 §7, §8.1 to §8.5, §11 (targets, verified in Phase 6), §15.4. Vendor pricing Nov 2026: Cloudflare Workers, Supabase, Inngest, Cloud Run Jakarta.</p><div class="aud"></div></div>
+</section>
+
+<!-- 7 FAILURE -->
+<section class="slide" data-aud="cs" data-title="Failure and continuity" data-ti="Gagal dan kontinuitas">
+  <p class="k" data-a data-i='Sekarang: apa yang terjadi saat ada yang rusak, atau kredit habis?'>Now: what happens when something breaks, or credits run out?</p>
+  <h1 data-a data-i='Rancang semua jalur gagal sejak awal: pelanggan tidak pernah dibiarkan tanpa balasan'>Design every failure path up front: customers are never left without a reply</h1>
+  <div class="body" style="grid-template-columns:1fr 1fr">
+    <div id="fail" style="display:grid;gap:12px;align-content:start"></div>
+    <div style="display:grid;gap:14px;align-content:start">
+      <h2 data-a style="font-size:30px" data-i='Saat kredit habis'>When credits run out</h2>
+      <div id="quota" style="display:grid;gap:8px"></div>
+      <p class="note" data-a data-i='Pesan mode protect ditagih dengan harga top-up; tenant hanya disuspensi jika ada tagihan belum dibayar 14 hari, setelah tiga pemberitahuan.'>Protect-mode messages are billed at the top-up price; a tenant is suspended only for an invoice 14 days unpaid, after three notices.</p>
+    </div>
+  </div>
+  <div class="foot"><p class="src" data-i='<b>Sumber:</b> PRD v3.1 §8.6 (mode gagal), FR-2.18, FR-6.4, FR-9.5, FR-19.1 sampai FR-19.5, §13.2.'><b>Sources:</b> PRD v3.1 §8.6 (failure modes), FR-2.18, FR-6.4, FR-9.5, FR-19.1 to FR-19.5, §13.2.</p><div class="aud"></div></div>
+</section>
+
+<!-- 8 SECURITY -->
+<section class="slide" data-aud="cs inv" data-title="Access and security" data-ti="Akses dan keamanan">
+  <p class="k" data-a data-i='Sekarang: siapa boleh melakukan apa, dari mana, dengan bukti apa?'>Now: who can do what, from where, with what proof?</p>
+  <h1 data-a data-i='Sesuaikan setiap aksi dengan risikonya: chat untuk rutinitas, aplikasi plus MFA untuk uang'>Match every action to its risk: chat for the routine, the app plus MFA for money</h1>
+  <div class="body" style="grid-template-columns:1.15fr .85fr">
+    <div id="tiers" style="display:grid;gap:14px;align-content:end"></div>
+    <div style="display:grid;gap:16px;align-content:start">
+      <div class="card" data-a style="padding:20px 26px" data-i='<h3><span class="lim">8</span> peran, dibatasi per cabang atau pelanggan</h3><p>Ditegakkan di database, dibaca langsung: mencabut akses berlaku di query berikutnya.</p>'><h3><span class="lim">8</span> roles, scoped by branch or customer</h3><p>Enforced in the database, read live: removing someone works on the next query.</p></div>
+      <div class="card" data-a style="padding:20px 26px" data-i='<h3><span class="lim">8</span> pasangan pemisahan tugas</h3><p>Tidak ada yang sekaligus menerima kas dan mencocokkan setorannya, atau mengajukan dan menyetujui penghapusan piutang.</p>'><h3><span class="lim">8</span> segregation-of-duties pairs</h3><p>No one both collects cash and matches its deposit, or requests and approves a write-off.</p></div>
+      <div class="card" data-a style="padding:20px 26px" data-i='<h3>WhatsApp ke aplikasi, dengan aman</h3><p>Hanya webhook bertanda tangan; link tanpa rahasia; HP staf diikat dengan kode yang mereka kirim sendiri.</p>'><h3>WhatsApp to app, safely</h3><p>Signed webhooks only; links carry no secrets; staff phones bound by a code they send themselves.</p></div>
+    </div>
+  </div>
+  <div class="foot"><p class="src" data-i='<b>Sumber:</b> PRD v3.1 §6.3, §6.4, FR-1.1, FR-11.2 sampai FR-11.7, FR-12.3, FR-12.8, FR-7.7. Diuji terhadap OWASP Agentic dan LLM Top 10 2026 serta ASVS level 2 (§12.2).'><b>Sources:</b> PRD v3.1 §6.3, §6.4, FR-1.1, FR-11.2 to FR-11.7, FR-12.3, FR-12.8, FR-7.7. Tested against OWASP Agentic and LLM Top 10 2026 and ASVS level 2 (§12.2).</p><div class="aud"></div></div>
+</section>
+
+<!-- 9 AUDIT MOAT -->
+<section class="slide" data-aud="inv cs" data-title="Audit readiness" data-ti="Kesiapan audit">
+  <p class="k" data-a data-i='Sekarang: apakah auditor independen akan menerima catatan kami?'>Now: would an independent auditor accept our records?</p>
+  <h1 data-a data-i='Tutup 11 celah audit: jadikan kepercayaan hal yang tidak bisa ditempel kompetitor belakangan'>Close all 11 audit gaps: turn trust into the thing competitors can't bolt on later</h1>
+  <div class="body" style="grid-template-columns:1fr;gap:20px">
+    <div id="gaps" style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px;perspective:800px"></div>
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px">
+      <div class="card" data-a style="padding:18px 22px"><div class="big" style="font-size:56px">≥95%</div><div class="lbl" data-i='faktur dengan bukti kirim grade A atau B'>invoices with grade A or B delivery proof</div></div>
+      <div class="card" data-a style="padding:18px 22px"><div class="big" style="font-size:56px">0</div><div class="lbl" data-i='celah penomoran yang tidak terjelaskan'>unexplained numbering gaps</div></div>
+      <div class="card" data-a style="padding:18px 22px"><div class="big" style="font-size:56px" data-i='10 thn'>10 yrs</div><div class="lbl" data-i='arsip terkunci di Jakarta'>locked archive in Jakarta</div></div>
+      <div class="card" data-a style="padding:18px 22px"><div class="big" style="font-size:56px">13</div><div class="lbl" data-i='skenario fraud dengan stop atau flag'>fraud scenarios with a stop or a flag</div></div>
+    </div>
+    <div data-a style="display:flex;flex-wrap:wrap;gap:12px;align-items:center"><span style="font-size:23px;color:var(--mu)" data-i='Dirancang selaras dengan'>Designed in line with</span><span class="tag">UU PDP 27/2022</span><span class="tag">PP 33/2026</span><span class="tag">UU KUP Ps. 28(11)</span><span class="tag">PSAK 115</span><span class="tag">Permenkominfo 5/2020</span><span class="tag">ISO/IEC 27001 Annex A</span><span style="font-size:21px;color:var(--cor)" data-i='Belum tersertifikasi; belum ada laporan ISAE 3402'>Not certified; no ISAE 3402 report yet</span></div>
+  </div>
+  <div class="foot"><p class="src" data-i='<b>Sumber:</b> PRD v3.1 §0.1 (11 celah), §12.3, §12.4 (13 skenario), FR-20 sampai FR-30, §11. Kenapa sulit ditiru: kepercayaan tidak bisa dipasang mundur pada catatan yang dibuat sebelum jejak audit ada (§18).'><b>Sources:</b> PRD v3.1 §0.1 (11 gaps), §12.3, §12.4 (13 scenarios), FR-20 to FR-30, §11. Why it is hard to copy: trust cannot be retrofitted onto records created before the trail existed (§18).</p><div class="aud"></div></div>
+</section>
+
+<!-- 10 ECONOMICS -->
+<section class="slide" data-aud="inv cs" data-title="Unit economics" data-ti="Unit economics">
+  <p class="k" data-a data-i='Sekarang: ke mana uang mengalir per tenant?'>Now: where does the money go per tenant?</p>
+  <h1 data-a data-i='Biaya ada di pesan, bukan model: WhatsApp 95 sampai 97% dari biaya variabel'>Spend on messages, not models: WhatsApp is 95 to 97% of variable cost</h1>
+  <div class="body" style="grid-template-columns:1.25fr .75fr">
+    <div style="display:grid;gap:24px;align-content:start">
+      <h2 data-a style="font-size:30px;color:var(--mu)" data-i='Perkiraan biaya variabel per tenant per bulan'>Expected variable cost per tenant per month</h2>
+      <div id="cost" style="display:grid;gap:22px"></div>
+      <div data-a style="display:flex;gap:26px;font-size:22px;color:var(--mu)"><span><i class="key" style="background:var(--grn)"></i>WhatsApp</span><span data-i='<i class="key" style="background:var(--lime)"></i>AI dan OCR'><i class="key" style="background:var(--lime)"></i>AI and OCR</span></div>
+    </div>
+    <div style="display:grid;gap:20px;align-content:start">
+      <div class="card" data-a><div class="big" style="font-size:70px">Rp<span data-count="37">0</span></div><div class="lbl" data-i='AI dan OCR per order'>AI and OCR per order</div></div>
+      <div class="card" data-a><div class="big" style="font-size:62px"><span data-count="11000">0</span> <span style="color:var(--mu)">→</span> <span data-count="6856">0</span></div><div class="lbl" data-i='pesan per bulan di tenant menengah, −38% berkat balasan ringkas, digest, dan push'>messages a month at a mid-size tenant, −38% from lean replies, digests and push</div></div>
+      <div class="card" data-a><div class="big" style="font-size:58px">Rp<span data-count="350">0</span> / Rp<span data-count="516">0</span></div><div class="lbl" data-i='biaya per kredit, perkiraan / terburuk'>cost per credit, expected / worst case</div></div>
+    </div>
+  </div>
+  <div class="foot"><p class="src" data-i='<b>Sumber:</b> PRD v3.1 §15, cost_model_v3.py (Lampiran A). Meta sejak 1 Okt 2026 ($0,025; Rp356,65 + PPN), kenaikan harga DeepSeek V4 Flash, Mistral OCR $4/1rb halaman, BI Rp18.250/USD. Profil: 600, 2.000, 6.000 order per bulan.'><b>Sources:</b> PRD v3.1 §15, cost_model_v3.py (Appendix A). Meta from 1 Oct 2026 ($0.025; Rp356.65 + PPN), DeepSeek V4 Flash raised prices, Mistral OCR $4/1k pages, BI Rp18,250/USD. Profiles: 600, 2,000, 6,000 orders a month.</p><div class="aud"></div></div>
+</section>
+
+<!-- 11 PRICING -->
+<section class="slide" data-aud="inv cs" data-title="Pricing and break-even" data-ti="Harga dan titik impas">
+  <p class="k" data-a data-i='Sekarang: bagaimana kami menagih supaya tidak pernah rugi di satu tenant?'>Now: how do we charge so we never lose money on a tenant?</p>
+  <h1 data-a data-i='Harga tiap paket di atas biaya terburuknya, dan platform impas di satu tenant'>Price every package above its worst-case cost, and break even on platform at one tenant</h1>
+  <div class="body" style="grid-template-columns:1.2fr .8fr">
+    <div style="display:grid;gap:26px;align-content:start" id="price"></div>
+    <div style="display:grid;gap:18px;align-content:start">
+      <div class="card" data-a data-i='<h3>Titik impas platform</h3><p><b class="lim">0,90</b> tenant Starter menutup platform pilot (Rp1,0 jt). <b class="lim">1,92</b> tenant Growth menutup platform growth (Rp4,5 jt). Titik impas sebenarnya adalah gaji tim, belum dimodelkan di sini.</p>'><h3>Platform break-even</h3><p><b class="lim">0.90</b> Starter tenants cover the pilot platform (Rp1.0 jt). <b class="lim">1.92</b> Growth tenants cover the growth platform (Rp4.5 jt). Team salaries are the real break-even, not modelled here.</p></div>
+      <div class="card" data-a data-i='<h3>Kenapa bukan pay-as-you-go</h3><p>Biaya per pemakaian yang terlihat membuat pelanggan berhemat, dan pemakaian parsial merusak saldo. Dengan kuota tetap, pemakaian tambahan terasa gratis.</p>'><h3>Why not pay-as-you-go</h3><p>Visible per-use cost makes customers ration, and partial use breaks balances. Fixed quota means use is free at the margin.</p></div>
+      <div class="card" data-a style="border-color:var(--cor)" data-i='<h3 class="cor">Dua syarat</h3><p>Meta harus menagih ke Avara agar WhatsApp bisa termasuk harga (Q16). Harga belum diuji ke pembeli (Q22).</p>'><h3 class="cor">Two conditions</h3><p>Meta must bill Avara for WhatsApp to be included (Q16). Prices are untested with buyers (Q22).</p></div>
+    </div>
+  </div>
+  <div class="foot"><p class="src" data-i='<b>Sumber:</b> PRD v3.1 §16.1 sampai §16.8, §16.4 (titik impas), §2.3 (adopsi). Harga indikatif belum termasuk PPN; top-up Rp750 per kredit; pilot dengan biaya terburuk (Rp1,3 jt atau Rp3,9 jt per bulan).'><b>Sources:</b> PRD v3.1 §16.1 to §16.8, §16.4 (break-even), §2.3 (adoption). Indicative prices excl. PPN; top-up Rp750 per credit; pilot at worst-case cost (Rp1.3 jt or Rp3.9 jt a month).</p><div class="aud"></div></div>
+</section>
+
+<!-- 12 ROADMAP -->
+<section class="slide" data-aud="cs inv" data-title="Build plan" data-ti="Rencana build">
+  <p class="k" data-a data-i='Masa depan: apa yang rilis kapan, dengan tim yang ada?'>Future: what ships when, with the team we have?</p>
+  <h1 data-a data-i='Rilis pilot slice pada 31 Desember, lalu perkuat sepanjang Januari'>Ship a pilot slice by 31 December, then harden through January</h1>
+  <div class="body" style="grid-template-columns:1fr;gap:24px">
+    <svg id="road" viewBox="0 0 1728 340" style="width:100%;height:320px"></svg>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+      <div class="card" data-a data-i='<h3>Pilot slice per 31 Des</h3><ul><li>Log audit, aturan tanpa hapus, penomoran tanpa celah sejak hari pertama</li><li>Order di WhatsApp dengan tombol konfirmasi; surat jalan dengan tombol "Sudah diterima"</li><li>Faktur dengan link bayar; pencocokan bank dengan cek saldo</li><li>Pengingat digest; hanya push; satu cabang, tiga peran</li></ul>'><h3>Pilot slice by 31 Dec</h3><ul><li>Audit log, no-delete rules, gapless numbering from day one</li><li>Orders on WhatsApp with a confirm button; delivery notes with "Sudah diterima"</li><li>Invoices with pay links; bank matching with balance checks</li><li>Digest reminders; push only; one branch, three roles</li></ul></div>
+      <div class="card" data-a data-i='<h3>Kenapa jejak audit lebih dulu</h3><p>Catatan yang dibuat sebelum jejak audit ada tidak akan pernah bisa dipercaya belakangan. Laporan, tutup buku, dan akses auditor bisa menyusul karena membaca data yang sudah sehat.</p><p style="margin-top:14px;color:var(--cor)">Cek realitas: 10 sampai 20 jam per minggu tidak cukup untuk Fase 0 sampai 3 secara penuh per 31 Des.</p>'><h3>Why the audit trail comes first</h3><p>Records created before the trail exists can never be made trustworthy later. Reports, close and auditor access can wait because they read data that is already sound.</p><p style="margin-top:14px;color:var(--cor)">Reality check: 10 to 20 hours a week cannot hold Phases 0 to 3 in full by 31 Dec.</p></div>
+    </div>
+  </div>
+  <div class="foot"><p class="src" data-i='<b>Sumber:</b> PRD v3.1 §18 (fase, pilot slice, realisme cakupan); project readiness matrix (target G4 31 Des 2026; 10 sampai 20 jam/minggu); PP 33/2026 berlaku 16 Jan 2027.'><b>Sources:</b> PRD v3.1 §18 (phases, pilot slice, scope realism); project readiness matrix (G4 target 31 Dec 2026; 10 to 20 h/week); PP 33/2026 effective 16 Jan 2027.</p><div class="aud"></div></div>
+</section>
+
+<!-- 13 RISKS -->
+<section class="slide" data-aud="inv cs" data-title="Risks" data-ti="Risiko">
+  <p class="k" data-a data-i='Masa depan: apa yang masih bisa menggagalkan ini?'>Future: what could still sink this?</p>
+  <h1 data-a data-i='Selesaikan lima hal yang belum pasti sebelum melangkah melewati pilot'>Resolve five unknowns before we scale past the pilot</h1>
+  <div class="body" style="grid-template-columns:.85fr 1.15fr">
+    <svg id="risk" viewBox="0 0 760 640" style="width:100%;height:640px"></svg>
+    <div id="rlist" style="display:grid;gap:12px;align-content:start"></div>
+  </div>
+  <div class="foot"><p class="src" data-i='<b>Sumber:</b> PRD v3.1 §17 (Q11, Q16, Q22, Q25, Q29, Q33), §18; kebijakan privasi DeepSeek (data disimpan di RRT). Dampak dan urgensi adalah penilaian saya.'><b>Sources:</b> PRD v3.1 §17 (Q11, Q16, Q22, Q25, Q29, Q33), §18; DeepSeek privacy policy (data stored in the PRC). Impact and urgency are my assessment.</p><div class="aud"></div></div>
+</section>
+
+<!-- 14 QUESTIONS -->
+<section class="slide" data-aud="inv cs" data-title="Hard questions" data-ti="Pertanyaan sulit">
+  <p class="k" data-a data-i='Pertanyaan yang mungkin Anda punya sekarang'>Questions you probably have now</p>
+  <h1 data-a data-i='Ajukan pertanyaan sulit: jawaban kami, dan apa yang belum kami ketahui'>Ask the hard questions: our answers, and what we still don't know</h1>
+  <div class="body" style="grid-template-columns:repeat(3,minmax(0,1fr));gap:20px" id="qa"></div>
+  <div class="foot"><p class="src" data-i='<b>Sumber:</b> PRD v3.1 §18, FR-2.15, FR-2.18, §17 Q11, §19, §12.4, §16.6, FR-30.5; Dok 14.'><b>Sources:</b> PRD v3.1 §18, FR-2.15, FR-2.18, §17 Q11, §19, §12.4, §16.6, FR-30.5; Dok 14.</p><div class="aud"></div></div>
+</section>
+
+<!-- 15 DECISIONS -->
+<section class="slide" data-aud="cs inv" data-title="Decisions and asks" data-ti="Keputusan dan permintaan">
+  <p class="k" data-a data-i='Masa depan: apa yang saya butuhkan dari Anda, dan apa yang Anda dapat?'>Future: what do I need from you, and what do you get back?</p>
+  <h1 data-a data-i='Putuskan empat hal minggu ini; nilai kami di tiga gerbang'>Decide four things this week; judge us on three gates</h1>
+  <div class="body" style="grid-template-columns:1.1fr .9fr;gap:26px">
+    <div id="asks" style="display:grid;gap:14px;align-content:start"></div>
+    <div style="display:grid;gap:16px;align-content:start">
+      <h2 data-a style="font-size:30px" data-i='Gerbang untuk menilai kami'>Gates to judge us on</h2>
+      <div id="gates" style="display:grid;gap:14px"></div>
+      <div class="card" data-a style="padding:20px 24px" data-i='<h3>Permintaan ke investor</h3><p>Runway untuk pilot; perkenalan ke BSP WhatsApp, bank dengan feed langsung, dan firma audit untuk ISAE 3402. Nominal ditentukan bersama CEO.</p>'><h3>Investor asks</h3><p>Runway for the pilot; introductions to a WhatsApp BSP, banks with direct feeds, and an audit firm for ISAE 3402. Amounts to be set with the CEO.</p></div>
+    </div>
+  </div>
+  <div class="foot"><p class="src" data-i='<b>Sumber:</b> PRD v3.1 §2.2 (target pilot), §16.6, §17, §18, FR-30.5; checklist kepatuhan (PSE, kontak PDP).'><b>Sources:</b> PRD v3.1 §2.2 (pilot targets), §16.6, §17, §18, FR-30.5; checklist kepatuhan (PSE, PDP contact).</p><div class="aud"></div></div>
+</section>
+
+<button class="edge" id="ePrev"></button>
+<button class="edge" id="eNext"></button>
+</div></div>
+
+<nav id="panel">
+  <button id="bPrev">&#8592;</button>
+  <span id="cnt" aria-live="polite">1 / 15</span>
+  <button id="bNext">&#8594;</button>
+  <div id="prog"><i></i></div>
+  <button id="bMore" aria-expanded="false" aria-controls="more"><span aria-hidden="true">&#9776;</span> <span data-i='Menu'>Menu</span></button>
+  <div id="more">
+    <div class="grp"><span class="sl" data-i='Slide'>Slide</span><select id="jump"></select></div>
+    <div class="grp"><span class="sl" data-i='Lensa audiens'>Audience lens</span>
+      <div class="seg lens" role="group">
+        <button data-l="all" aria-pressed="true" data-i='Semua'>All</button>
+        <button data-l="cs" aria-pressed="false">C-suite</button>
+        <button data-l="inv" aria-pressed="false">Investor</button>
+      </div></div>
+    <div class="grp"><span class="sl" data-i='Bahasa'>Language</span>
+      <div class="seg" id="langSeg" role="group">
+        <button data-lang="en" aria-pressed="true">EN</button>
+        <button data-lang="id" aria-pressed="false">ID</button>
+      </div></div>
+    <div class="grp"><span class="sl" data-i='Tema'>Theme</span>
+      <div class="seg" id="themeSeg" role="group">
+        <button data-theme="dark" aria-pressed="true"><span aria-hidden="true">&#9790;</span> <span data-i='Gelap'>Dark</span></button>
+        <button data-theme="light" aria-pressed="false"><span aria-hidden="true">&#9728;</span> <span data-i='Terang'>Light</span></button>
+      </div></div>
+    <div class="grp"><span class="sl" data-i='Tampilan'>View</span>
+      <div class="seg">
+        <button id="bFull" data-i='Layar penuh'>Full screen</button>
+        <button id="bHide" data-i='Sembunyikan panel'>Hide panel</button>
+      </div></div>
+  </div>
+</nav>
+<button id="bShow"><span aria-hidden="true">&#9776;</span> <span data-i='Kontrol'>Controls</span></button>
+
+<script>
+{
+const S=[...document.querySelectorAll('.slide')];
+const N=S.length;
+const AUD={cs:'C-suite',inv:'Investor'};
+const $=id=>document.getElementById(id);
+const fmt=n=>Math.round(n).toLocaleString('id-ID');
+const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+const qs=new URLSearchParams(location.search);
+let cur=0,lens='all';
+let lang=['en','id'].includes(qs.get('lang'))?qs.get('lang'):(store.get('avara-deck-lang')||'en');
+let theme=['dark','light'].includes(qs.get('theme'))?qs.get('theme'):(store.get('avara-deck-theme')||'dark');
+const t=(en,id)=>lang==='id'?id:en;
+let C={};
+function pal(){const cs=getComputedStyle(document.documentElement),g=k=>cs.getPropertyValue(k).trim();C={bg:g('--bg'),sf:g('--sf'),sf2:g('--sf2'),ink:g('--ink'),mu:g('--mu'),lime:g('--lime'),grn:g('--grn'),cor:g('--cor'),on:g('--on'),rgb:g('--rgb')};}
+const A=x=>`rgba(${C.rgb},${x})`;
+
+/* static text: English lives in the markup, Indonesian in data-i */
+function applyStatic(){
+  document.querySelectorAll('[data-i]').forEach(e=>{if(e.dataset.en===undefined)e.dataset.en=e.innerHTML;e.innerHTML=lang==='id'?e.dataset.i:e.dataset.en;});
+  const AL={bPrev:['Previous slide','Slide sebelumnya'],bNext:['Next slide','Slide berikutnya'],ePrev:['Previous slide','Slide sebelumnya'],eNext:['Next slide','Slide berikutnya'],jump:['Jump to slide','Lompat ke slide'],bMore:['More controls','Kontrol lainnya'],bShow:['Show controls','Tampilkan kontrol'],panel:['Slide controls','Kontrol slide']};
+  Object.entries(AL).forEach(([k,v])=>$(k).setAttribute('aria-label',t(v[0],v[1])));
+  document.querySelector('.lens').setAttribute('aria-label',t('Audience lens','Lensa audiens'));
+  $('langSeg').setAttribute('aria-label',t('Language','Bahasa'));$('themeSeg').setAttribute('aria-label',t('Theme','Tema'));
+  document.documentElement.lang=lang;
+}
+
+/* generated diagrams and lists */
+function build(){
+/* ring on title */
+{
+  const s=$('ring1'),cx=400,cy=400,r=300,n=8;
+  let h=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${A(.12)}" stroke-width="26"/><circle class="draw" cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${C.lime}" stroke-width="10" stroke-linecap="round" transform="rotate(-90 ${cx} ${cy})"/>`;
+  for(let i=0;i<n;i++){const a=-Math.PI/2+i*2*Math.PI/n;h+=`<circle data-a="pop" cx="${cx+r*Math.cos(a)}" cy="${cy+r*Math.sin(a)}" r="22" fill="${C.bg}" stroke="${C.grn}" stroke-width="8"/>`;}
+  h+=`<circle r="14" fill="${C.lime}"><animateMotion dur="8s" repeatCount="indefinite" path="M${cx},${cy-r} a${r},${r} 0 1,1 -0.1,0"/></circle>`;
+  h+=`<text x="${cx}" y="${cy-8}" text-anchor="middle" fill="${C.ink}" font-size="62" font-weight="800">Order</text><text x="${cx}" y="${cy+62}" text-anchor="middle" fill="${C.lime}" font-size="62" font-weight="800">to cash</text>`;
+  s.innerHTML=h;
+}
+
+/* positioning map */
+{
+  const s=$('map'),L=70,T=20,W=800,H=540;
+  const P=[['Meta Business Agent',.12,.18,0],['Cekat.ai',.24,.3,0],[t('Qontak AI suites','Paket AI Qontak'),.36,.42,0],[t('n8n freelancers + WA API','Freelancer n8n + WA API'),.5,.12,0],[t('Accounting apps','Aplikasi akuntansi'),.82,.55,0],['Avara',.8,.86,1]];
+  let h=`<rect x="${L}" y="${T}" width="${W}" height="${H}" rx="16" fill="${C.sf}" stroke="${A(.2)}" stroke-width="2"/><rect x="${L+W/2}" y="${T}" width="${W/2}" height="${H/2}" rx="16" fill="${C.lime}" fill-opacity=".1"/>`;
+  h+=`<text x="${L+W/2}" y="${T+H+44}" text-anchor="middle" fill="${C.mu}" font-size="24">${t('answers chats  →  executes the back office','menjawab chat  →  menjalankan back office')}</text><text x="30" y="${T+H/2}" text-anchor="middle" fill="${C.mu}" font-size="24" transform="rotate(-90 30 ${T+H/2})">${t('talk only  →  evidence and controls','sekadar bicara  →  bukti dan kontrol')}</text>`;
+  P.forEach(p=>{const x=L+p[1]*W,y=T+(1-p[2])*H;const anc=p[1]>.6?'end':'start',dx=p[1]>.6?-26:26;h+=`<g data-a="pop"><circle cx="${x}" cy="${y}" r="${p[3]?26:16}" fill="${p[3]?C.lime:C.grn}"/><text x="${x+dx}" y="${y+9}" text-anchor="${anc}" fill="${p[3]?C.lime:C.ink}" font-size="${p[3]?34:24}" font-weight="${p[3]?800:600}">${p[0]}</text></g>`;});
+  h+=`<path class="draw" d="M${L+.36*W+20} ${T+(1-.42)*H-10} Q ${L+.6*W} ${T+.25*H} ${L+.8*W-30} ${T+(1-.86)*H+10}" stroke="${C.lime}" stroke-width="4" fill="none" stroke-dasharray="10 10"/>`;
+  s.innerHTML=h;
+}
+
+/* journey */
+{
+  const v=[['v2.0',t('tech spec','spek teknis')],['v2.1 · 20 Nov',t('landing matched','landing disesuaikan')],['v2.2 · 21 Nov',t('compliance built in','kepatuhan tertanam')],['v3.0 · 23 Nov',t('sales only, priced','hanya penjualan, ada harga')],['v3.1 · 23 Nov',t('audit-ready','siap audit')]];
+  const s=$('tl'),x0=40,x1=1688,step=(x1-x0)/(v.length-1);
+  let h=`<line class="draw" x1="${x0}" y1="36" x2="${x1}" y2="36" stroke="${C.lime}" stroke-width="6"/>`;
+  v.forEach((d,i)=>{const x=x0+i*step,anc=i===0?'start':i===v.length-1?'end':'middle';h+=`<g data-a="pop"><circle cx="${x}" cy="36" r="14" fill="${i===v.length-1?C.lime:C.bg}" stroke="${C.lime}" stroke-width="5"/><text x="${x}" y="88" text-anchor="${anc}" fill="${C.ink}" font-size="28" font-weight="800">${d[0]}</text><text x="${x}" y="122" text-anchor="${anc}" fill="${C.mu}" font-size="23">${d[1]}</text></g>`;});
+  s.innerHTML=h;
+  const D=lang==='id'?[
+    ['Cakupan meliputi pelanggan, pemasok, dan OCR sekaligus','Fokus pada satu siklus, order to cash. Bukan ERP.'],
+    ['Meta menagih setiap balasan sejak 1 Okt 2026','Pesan dipangkas 38%: satu balasan per giliran, digest, push untuk staf.'],
+    ['iPhone membuka link WhatsApp di Safari, bukan di aplikasi','Link tanpa rahasia; lanjut setelah login; push membuka aplikasi.'],
+    ['Pay-as-you-go membuat pelanggan menghemat pemakaian','Jual paket tetap dengan kredit; WhatsApp termasuk harga.'],
+    ['Kredit habis bisa membungkam chat penjualan','Pelanggan tidak pernah dibungkam; hanya pengingat yang berhenti.'],
+    ['Auditor akan menolak v3.0 pada 11 poin','Tambah bukti kirim, catatan tanpa hapus, jejak anti-manipulasi.']]:[
+    ['Scope covered customers, suppliers and OCR at once','Focus on one loop, order to cash. Not an ERP.'],
+    ['Meta bills every reply since 1 Oct 2026','Cut messages 38%: one reply per turn, digests, push for staff.'],
+    ['iPhones open WhatsApp links in Safari, not the app','Keep secrets out of links; resume after login; push opens the app.'],
+    ['Pay-as-you-go makes customers ration use','Sell fixed packages with credits; WhatsApp inside the price.'],
+    ['Running out of credits could silence a sales chat','Never silence a customer; only reminders pause.'],
+    ['An auditor would reject v3.0 on 11 points','Add delivery proof, no-delete records, a tamper-evident trail.']];
+  $('dec').innerHTML=D.map((d,i)=>`<div class="card" data-a style="padding:20px 26px"><p style="font-size:23px;font-weight:700;color:var(--cor)">${i+1}. ${d[0]}</p><p style="font-size:27px;color:var(--ink);margin-top:10px;font-weight:700">${d[1]}</p></div>`).join('');
+}
+
+/* boundary */
+{
+  const s=$('bound');
+  const Ao=lang==='id'?['Perjanjian dan limit kredit','Order dan bukti kirim','Faktur dan penomoran','Pembayaran, cocok mutasi bank','Piutang dan pengingat','Status kredit','Jejak audit dan tutup buku']:['Agreements and credit limits','Orders and delivery proof','Invoices and numbering','Payments and bank matching','Receivables and reminders','Credit status','Audit trail and close'];
+  const B=lang==='id'?['Buku besar dan jurnal','Pajak dan Faktur Pajak','Stok dan gudang','Pembelian (fase berikutnya)']:['General ledger and journals','Tax filing and Faktur Pajak','Stock and warehouse','Purchasing (later phase)'];
+  let h=`<rect data-a x="0" y="0" width="1040" height="540" rx="22" fill="${C.sf}" stroke="${C.lime}" stroke-width="3"/><text data-a x="36" y="58" fill="${C.lime}" font-size="34" font-weight="800">${t('Avara owns','Dipegang Avara')}</text>`;
+  Ao.forEach((x,i)=>{const col=i%2,row=Math.floor(i/2),px=36+col*500,py=96+row*108;h+=`<g data-a="pop"><rect x="${px}" y="${py}" width="470" height="88" rx="14" fill="${C.sf2}"/><text x="${px+24}" y="${py+54}" fill="${C.ink}" font-size="27" font-weight="700">${x}</text></g>`;});
+  h+=`<rect data-a x="1240" y="0" width="488" height="540" rx="22" fill="${C.bg}" stroke="${A(.3)}" stroke-width="3" stroke-dasharray="10 8"/><text data-a x="1276" y="58" fill="${C.mu}" font-size="34" font-weight="800">${t('Accounting app owns','Dipegang app akuntansi')}</text>`;
+  B.forEach((x,i)=>{const py=96+i*108;h+=`<g data-a="pop"><rect x="1276" y="${py}" width="416" height="88" rx="14" fill="${C.sf}"/><text x="1300" y="${py+54}" fill="${C.mu}" font-size="26" font-weight="700">${x}</text></g>`;});
+  h+=`<path class="draw" d="M1050 230 H1230" stroke="${C.lime}" stroke-width="6" fill="none"/><path class="draw" d="M1230 330 H1050" stroke="${C.lime}" stroke-width="6" fill="none"/><polygon points="1230,220 1250,230 1230,240" fill="${C.lime}"/><polygon points="1050,320 1030,330 1050,340" fill="${C.lime}"/>`;
+  h+=`<text x="1140" y="210" text-anchor="middle" fill="${C.lime}" font-size="21" font-weight="700">${t('journal summary','ringkasan jurnal')}</text><text x="1140" y="372" text-anchor="middle" fill="${C.lime}" font-size="21" font-weight="700">${t('GL balances to','cocokkan saldo')}</text><text x="1140" y="398" text-anchor="middle" fill="${C.lime}" font-size="21" font-weight="700">${t('reconcile monthly','GL tiap bulan')}</text>`;
+  s.innerHTML=h;
+}
+
+/* architecture */
+{
+  const s=$('arch'),y=150;
+  const n=[[90,'Meta','Cloud API'],[420,'Cloudflare Workers',t('verify, ack fast','verifikasi, ack cepat')],[760,'Inngest',t('durable steps','langkah durable')],[1100,'Cloud Run Jakarta',t('agent, invoices, matching','agen, faktur, pencocokan')],[1440,'Supabase',t('RLS: tenant, role','RLS: tenant, peran')]];
+  let h=`<line x1="90" y1="${y}" x2="1640" y2="${y}" stroke="${A(.14)}" stroke-width="28" stroke-linecap="round"/><path class="draw" d="M90 ${y} H1440" stroke="${C.lime}" stroke-width="10" fill="none" stroke-linecap="round"/>`;
+  n.forEach((d,i)=>{h+=`<g data-a="pop"><circle cx="${d[0]}" cy="${y}" r="30" fill="${C.bg}" stroke="${C.grn}" stroke-width="9"/><text x="${d[0]}" y="${y-56}" text-anchor="${i===0?'start':'middle'}" fill="${C.ink}" font-size="30" font-weight="800">${d[1]}</text><text x="${d[0]}" y="${y+72}" text-anchor="${i===0?'start':'middle'}" fill="${C.mu}" font-size="23">${d[2]}</text></g>`;});
+  const side=[[810,'DOKU',t('optional pay links','link bayar opsional')],[1070,'DeepSeek',t('wrapped; menu fallback','fallback ke menu')],[1330,'Mistral OCR',t('EU endpoint','endpoint UE')],[1590,'GCS Jakarta',t('10-year locked archive','arsip terkunci 10 thn')]];
+  side.forEach(d=>{h+=`<g data-a><line x1="1100" y1="${y+92}" x2="${d[0]}" y2="350" stroke="${C.mu}" stroke-width="3" stroke-dasharray="6 8"/><rect x="${d[0]-120}" y="350" width="240" height="100" rx="16" fill="${C.sf}" stroke="${A(.22)}" stroke-width="2"/><text x="${d[0]}" y="392" text-anchor="middle" fill="${C.ink}" font-size="26" font-weight="800">${d[1]}</text><text x="${d[0]}" y="428" text-anchor="middle" fill="${C.mu}" font-size="21">${d[2]}</text></g>`;});
+  h+=`<g data-a><line x1="420" y1="${y+92}" x2="300" y2="350" stroke="${C.cor}" stroke-width="3" stroke-dasharray="6 8"/><rect x="60" y="350" width="480" height="100" rx="16" fill="${C.bg}" stroke="${C.cor}" stroke-width="3" stroke-dasharray="8 8"/><text x="300" y="392" text-anchor="middle" fill="${C.cor}" font-size="25" font-weight="800">${t('Inngest down?','Inngest mati?')}</text><text x="300" y="428" text-anchor="middle" fill="${C.mu}" font-size="21">${t('events buffered, replayed in order','event ditampung, diputar ulang berurutan')}</text></g>`;
+  h+=`<circle r="16" fill="${C.lime}"><animateMotion dur="3.5s" repeatCount="indefinite" path="M90 ${y} H1440"/></circle>`;
+  s.innerHTML=h;
+}
+
+/* failure modes + quota matrix */
+{
+  const F=lang==='id'?[['DeepSeek mati atau lambat','coba ulang sekali, lalu menu menjawab; staf diberi tahu'],['Inngest tidak terjangkau','event ditampung di database, diputar ulang'],['Pengiriman timeout','ditandai unknown, ditinjau manusia, tidak dikirim ulang begitu saja'],['Rating kualitas Meta turun','pengingat berhenti lebih dulu, tenant diberi tahu'],['Deploy bermasalah','canary 10% selama 30 menit, rollback instan'],['Supabase mati','risiko satu region yang diterima; event menunggu']]
+    :[['DeepSeek down or slow','retry once, then a menu answers; staff told'],['Inngest unreachable','events buffered in the database, replayed'],['Send times out','marked unknown, human review, never resent blindly'],['Meta quality rating drops','reminders pause first, tenant alerted'],['Bad deploy','10% canary for 30 min, instant rollback'],['Supabase down','accepted single-region risk; events wait']];
+  $('fail').innerHTML=F.map((f,i)=>`<div data-a style="display:grid;grid-template-columns:.9fr 1.1fr;gap:16px;align-items:center;background:var(--sf);border:2px solid ${i===5?'var(--cor)':'var(--ln)'};border-radius:14px;padding:14px 20px"><b style="font-size:25px;color:${i===5?'var(--cor)':'var(--ink)'}">${f[0]}</b><span style="font-size:22px;color:var(--mu)">${f[1]}</span></div>`).join('');
+  const st=['Normal',t('Warning 80%','Peringatan 80%'),'Top-up','Grace +20%','Protect'];
+  const pk=t('pkg','paket');
+  const rows=[[t('Customer replies','Balasan pelanggan'),[1,1,1,1,1]],[t('Reminders','Pengingat'),[1,1,1,1,.5]],[t('Staff WhatsApp','WhatsApp staf'),[1,1,1,1,0]],[t('Billing','Penagihan'),[pk,pk,'top-up','Rp750','Rp750']]];
+  let h=`<div data-a style="display:grid;grid-template-columns:1.3fr repeat(5,minmax(0,1fr));gap:8px"><span></span>${st.map(x=>`<span class="cell" style="color:var(--mu);font-size:19px;min-height:40px">${x}</span>`).join('')}</div>`;
+  rows.forEach(r=>{h+=`<div data-a style="display:grid;grid-template-columns:1.3fr repeat(5,minmax(0,1fr));gap:8px"><span class="cell" style="justify-content:flex-start;font-size:23px">${r[0]}</span>${r[1].map(v=>typeof v==='string'?`<span class="cell" style="background:var(--sf2);color:var(--ink)">${v}</span>`:`<span class="cell" style="background:${v===1?'var(--grn)':v===0?'var(--cor)':'var(--lime)'};color:var(--on)">${v===1?t('on','aktif'):v===0?t('push only','hanya push'):t('invoices, receipts','faktur, kuitansi')}</span>`).join('')}</div>`;});
+  $('quota').innerHTML=h;
+}
+
+/* tiers */
+{
+  const T=lang==='id'?[['0','Info publik','siapa saja','chat'],['1','Baca data sendiri','kontak dikenal atau staf terikat','chat'],['2','Tulis risiko rendah','order, janji bayar; aturan persetujuan tetap berlaku','chat'],['3','Persetujuan terbatas','opt-in, sesi aplikasi dalam 7 hari terakhir','chat'],['4','Sensitif','limit, rekening bank, anggota, ekspor','aplikasi + MFA']]
+    :[['0','Public info','anyone','chat'],['1','Read own data','known contact or bound staff','chat'],['2','Low-risk writes','orders, promises; approvals still apply','chat'],['3','Bounded approval','opt-in, app session in last 7 days','chat'],['4','Sensitive','limits, bank accounts, members, exports','app + MFA']];
+  $('tiers').innerHTML=T.map((x,i)=>`<div data-a="wipe" style="width:${52+i*12}%;background:${i===4?'var(--cor)':i===3?'var(--grn)':'var(--sf2)'};color:${i>=3?'var(--on)':'var(--ink)'};border-radius:14px;padding:16px 22px;display:flex;justify-content:space-between;gap:16px;align-items:center"><div><b style="font-size:28px">${t('Tier','Tingkat')} ${x[0]} · ${x[1]}</b><div style="font-size:21px;opacity:.85">${x[2]}</div></div><b style="font-size:24px;white-space:nowrap">${x[3]}</b></div>`).join('');
+}
+
+/* audit gaps flip */
+{
+  const G=lang==='id'?['Bukti kirim','Data bank tepercaya','Log perubahan lengkap','Nomor tanpa celah','Giro dan kas lapangan','Tutup periode','Laporan per tanggal','Rekonsiliasi GL','Asal-usul output AI','Kontrol internal kami','Retensi 10 tahun']
+    :['Delivery proof','Trusted bank data','Full change log','Gapless numbering','Giro and field cash','Period close','As-of reports','GL reconciliation','AI provenance','Our own controls','10-year retention'];
+  $('gaps').innerHTML=G.map((g,i)=>`<div class="gap" style="--g:${i}">${g}</div>`).join('')+`<div data-a style="border-radius:16px;padding:16px 18px;font-size:22px;font-weight:800;border:2px dashed var(--lime);color:var(--lime);display:flex;align-items:flex-end;min-height:96px">${t('11 of 11 addressed in v3.1','11 dari 11 ditangani di v3.1')}</div>`;
+}
+
+/* cost chart */
+{
+  const Cs=[[t('Small · 600 orders','Kecil · 600 order'),474108,22272],[t('Mid · 2,000 orders','Menengah · 2.000 order'),2399817,74241],[t('Large · 6,000 orders','Besar · 6.000 order'),7782363,222723]];
+  const max=Cs[2][1];
+  $('cost').innerHTML=Cs.map(c=>{const wa=c[1]-c[2];return `<div data-a><div style="display:flex;justify-content:space-between;font-size:26px;margin-bottom:8px"><span>${c[0]}</span><b>Rp ${fmt(c[1])}</b></div><div class="bar" style="height:54px"><i style="--w:${(c[1]/max*100).toFixed(1)}%;background:var(--lime)"></i><i style="--w:${(wa/max*100).toFixed(1)}%;background:var(--grn);border-radius:10px 0 0 10px"></i></div><div style="font-size:21px;color:var(--mu);margin-top:6px">WhatsApp ${Math.round(wa/c[1]*100)}% · ${t('AI and OCR','AI dan OCR')} Rp ${fmt(c[2])}</div></div>`;}).join('');
+}
+
+/* pricing chart */
+{
+  const P=[['Starter',1990000,1288936,875079,t('2,500 credits','2.500 kredit')],['Growth',4990000,3866809,2625237,t('7,500 credits','7.500 kredit')],['Scale',11990000,11342640,7700696,t('22,000 credits','22.000 kredit')]];
+  const max=12000000;
+  $('price').innerHTML=P.map(p=>`<div data-a><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px"><span style="font-size:32px;font-weight:800">${p[0]} <span style="font-size:22px;color:var(--mu);font-weight:500">${p[4]}</span></span><span style="font-size:24px;color:var(--mu)">${t('worst-case margin','margin terburuk')} <b class="lim" style="font-size:30px">${Math.round((p[1]-p[2])/p[1]*100)}%</b></span></div>
+    <div class="bar" style="height:28px;margin-bottom:6px"><i style="--w:${(p[1]/max*100).toFixed(1)}%;background:var(--lime)"></i></div>
+    <div class="bar" style="height:28px;margin-bottom:6px"><i style="--w:${(p[2]/max*100).toFixed(1)}%;background:var(--cor)"></i></div>
+    <div class="bar" style="height:28px"><i style="--w:${(p[3]/max*100).toFixed(1)}%;background:var(--grn)"></i></div>
+    <div style="font-size:21px;color:var(--mu);margin-top:6px">${t('Price','Harga')} Rp ${fmt(p[1])} · ${t('worst-case cost','biaya terburuk')} Rp ${fmt(p[2])} · ${t('expected','perkiraan')} Rp ${fmt(p[3])}</div></div>`).join('')
+    + `<div data-a style="display:flex;gap:26px;font-size:22px;color:var(--mu)"><span><i class="key" style="background:var(--lime)"></i>${t('price a month','harga per bulan')}</span><span><i class="key" style="background:var(--cor)"></i>${t('worst-case cost, fully used','biaya terburuk, terpakai penuh')}</span><span><i class="key" style="background:var(--grn)"></i>${t('expected cost','perkiraan biaya')}</span></div>`;
+}
+
+/* roadmap */
+{
+  const s=$('road');
+  const P=lang==='id'?[['0','Fondasi + jejak audit'],['1','Order'],['2','Faktur, bukti kirim'],['3','Kas, giro, kas lapangan'],['4','Tutup buku, retur, arsip'],['5','Alat auditor, rek. GL'],['6','Uji beban dan keamanan']]
+    :[['0','Foundation + audit trail'],['1','Orders'],['2','Invoices, delivery proof'],['3','Cash, giro, field cash'],['4','Close, returns, archive'],['5','Auditor tools, GL rec'],['6','Load and security tests']];
+  const x0=40,x1=1688,w=(x1-x0)/P.length;
+  let h='';
+  P.forEach((p,i)=>{const x=x0+i*w,on=i<4;h+=`<g data-a="wipe"><rect x="${x+4}" y="30" width="${w-8}" height="120" rx="14" fill="${on?C.grn:C.sf2}" stroke="${A(.2)}" stroke-width="2"/><text x="${x+w/2}" y="80" text-anchor="middle" fill="${on?C.on:C.ink}" font-size="25" font-weight="800">${t('Phase','Fase')} ${p[0]}</text><text x="${x+w/2}" y="116" text-anchor="middle" fill="${on?C.on:C.mu}" font-size="18" font-weight="700">${p[1]}</text></g>`;});
+  const M=[[x0+6,t('Today · 23 Nov','Hari ini · 23 Nov'),0],[x0+w*2.4,t('Pilot slice · 31 Dec','Pilot slice · 31 Des'),1,1],[x0+w*3.3,t('PP 33/2026 in force · 16 Jan 2027','PP 33/2026 berlaku · 16 Jan 2027'),3],[x0+w*4,t('Pilot-ready: Phases 0 to 3 + compliance','Siap pilot: Fase 0 sampai 3 + kepatuhan'),2]];
+  M.forEach(m=>{const ly=186+m[2]*38;h+=`<g data-a><line x1="${m[0]}" y1="154" x2="${m[0]}" y2="${ly+6}" stroke="${C.lime}" stroke-width="4"/><circle cx="${m[0]}" cy="154" r="7" fill="${C.lime}"/><text x="${m[3]?m[0]-12:m[0]+12}" y="${ly+8}" text-anchor="${m[3]?'end':'start'}" fill="${C.lime}" font-size="23" font-weight="800">${m[1]}</text></g>`;});
+  s.innerHTML=h;
+}
+
+/* risks */
+{
+  const R=lang==='id'?[['Q16','Apakah Meta akan menagih ke Avara?','harga termasuk WhatsApp',.92,.9,'Tanya BSP dan Meta tertulis minggu ini','Barizi + legal'],['Q11','Data LLM disimpan di RRT','dasar transfer lintas negara',.8,.7,'Vendor ber-DPA dengan region jelas, atau self-host','Legal + Kenzi'],['Q25/33','Alur kerja pilot belum diketahui','giro, kas lapangan, bank',.7,.85,'Jalankan discovery dengan tenant pilot','Barizi'],['Q22','Apakah pembeli mau membayar harga ini?','penerimaan paket',.75,.5,'Uji titik harga saat discovery','Yosafat + Barizi'],['Q29','Cakupan "disimpan di Indonesia"','lokasi penyimpanan UU KUP',.55,.45,'Konfirmasi ke konsultan pajak; arsip Jakarta dulu','Legal']]
+    :[['Q16','Will Meta bill Avara?','WhatsApp-included pricing',.92,.9,'Ask BSP and Meta in writing this week','Barizi + legal'],['Q11','LLM data stored in the PRC','cross-border transfer basis',.8,.7,'Pick a vendor with a DPA and stated region, or self-host','Legal + Kenzi'],['Q25/33','Pilot workflow unknown','giro, field cash, banks',.7,.85,'Run discovery with the pilot tenant','Barizi'],['Q22','Will buyers pay these prices?','package acceptance',.75,.5,'Test price points in discovery','Yosafat + Barizi'],['Q29','"Kept in Indonesia" scope','UU KUP storage location',.55,.45,'Confirm with a tax adviser; Jakarta archive meanwhile','Legal']];
+  const s=$('risk'),L=90,T=24,W=640,H=520;
+  let h=`<rect x="${L}" y="${T}" width="${W}" height="${H}" fill="${C.sf}" stroke="${A(.2)}" stroke-width="2" rx="14"/><rect x="${L+W/2}" y="${T}" width="${W/2}" height="${H/2}" fill="${C.cor}" fill-opacity=".12" rx="14"/>`;
+  h+=`<text x="${L+W/2}" y="${T+H+48}" text-anchor="middle" fill="${C.mu}" font-size="24">${t('urgency →','urgensi →')}</text><text x="40" y="${T+H/2}" fill="${C.mu}" font-size="24" transform="rotate(-90 40 ${T+H/2})" text-anchor="middle">${t('impact →','dampak →')}</text>`;
+  R.forEach(r=>{const x=L+r[4]*W,y=T+(1-r[3])*H;h+=`<g data-a="pop"><circle cx="${x}" cy="${y}" r="40" fill="${r[3]>.85?C.cor:C.grn}"/><text x="${x}" y="${y+8}" text-anchor="middle" fill="${C.on}" font-size="${r[0].length>3?19:25}" font-weight="800">${r[0]}</text></g>`;});
+  s.innerHTML=h;
+  $('rlist').innerHTML=R.map(r=>`<div class="card" data-a style="padding:14px 22px;display:grid;grid-template-columns:96px 1fr;gap:16px;align-items:center"><b style="font-size:25px;color:${r[3]>.85?'var(--cor)':'var(--grn)'}">${r[0]}</b><div><b style="font-size:26px">${r[1]}</b> <span style="font-size:22px;color:var(--mu)">· ${r[2]}</span><div style="font-size:23px;margin-top:4px">${r[5]} <span style="color:var(--mu)">· ${r[6]}</span></div></div></div>`).join('')
+   + `<div class="card" data-a style="padding:14px 22px"><b style="font-size:24px" class="cor">${t('Plus capacity:','Plus kapasitas:')}</b> <span style="font-size:23px;color:var(--mu)">${t('10 to 20 hours a week across the team, so scope is cut to a pilot slice.','10 sampai 20 jam/minggu untuk seluruh tim, jadi cakupan dipangkas ke pilot slice.')}</span></div>`;
+}
+
+/* QA */
+{
+  const Q=lang==='id'?[['Kenapa jejak audit dibangun sebelum fitur?','Karena kepercayaan tidak bisa ditambahkan ke catatan lama. Biayanya kecil di Fase 0 dan mustahil dipasang belakangan.'],['Bagaimana kalau DeepSeek diblokir atau dilarang?','Router dan agen ada di balik satu interface; provider kedua tinggal dipasang. Q11 bisa jadi memaksa pergantian itu.'],['Kenapa tidak pakai model AI terbaru di semua tempat?','Biayanya di pesan, bukan token: sekitar Rp20 untuk AI per giliran dibanding Rp396 per pesan WhatsApp. Aturan plus satu panggilan LLM sudah cukup.'],['Apa yang mencegah kompetitor meniru ini?','Bukan kodenya. Bukti tingkat audit yang terakumulasi per tenant dan penerimaan auditor lambat ditiru. Belum terbukti sampai pilot.'],['Kapan pendapatan mulai?','Pilot berjalan 3 bulan dengan biaya terburuk; harga normal mulai bulan keempat. Belum ada pelanggan berbayar.'],['Masih terbuka','Apakah Meta menagih ke kami (Q16)? Apakah harga bertahan (Q22)? Bank mana yang memberi feed langsung (Q32)? Jawabannya sebelum pilot dimulai.']]
+    :[['Why build the audit trail before features?','Because trust cannot be added to old records. It costs little in Phase 0 and is impossible to retrofit.'],['What if DeepSeek is blocked or banned?','The router and agent sit behind one interface; a second provider plugs in. Q11 may force the switch anyway.'],['Why not use the newest AI models everywhere?','The cost is in messages, not tokens: about Rp20 of AI per turn against Rp396 per WhatsApp message. Rules plus one LLM call is enough.'],['What stops a competitor copying this?','Not the code. Accumulated, audit-grade evidence per tenant and auditor acceptance are slow to copy. Unproven until the pilot.'],['When does revenue start?','Pilot runs 3 months at worst-case cost; list prices from month 4. No paying customer yet.'],['Still open','Will Meta bill us (Q16)? Will prices hold (Q22)? Which banks give direct feeds (Q32)? Answers before the pilot starts.']];
+  $('qa').innerHTML=Q.map((q,i)=>`<div class="card" data-a style="${i===5?'border-color:var(--cor)':''}"><h3 style="${i===5?'color:var(--cor)':''}">${q[0]}</h3><p>${q[1]}</p></div>`).join('');
+}
+
+/* asks + gates */
+{
+  const As=lang==='id'?[['Kirim Q15 dan Q16 ke BSP secara tertulis','Barizi + legal','minggu ini'],['Jadwalkan discovery pilot: giro, kas lapangan, bank (Q25, Q33)','Barizi','minggu ini'],['Putuskan vendor LLM dan lokasi data (Q11)','Kenzi + legal','sebelum tenant live pertama'],['Tunjuk kontak PDP, mulai pendaftaran PSE, setujui pilot slice','CEO','minggu ini']]
+    :[['Send Q15 and Q16 to the BSP in writing','Barizi + legal','this week'],['Book pilot discovery: giro, field cash, banks (Q25, Q33)','Barizi','this week'],['Decide the LLM vendor and data location (Q11)','Kenzi + legal','before first live tenant'],['Appoint the PDP contact, start PSE registration, approve the pilot slice','CEO','this week']];
+  $('asks').innerHTML=`<h2 data-a style="font-size:30px">${t('Decisions needed','Keputusan yang dibutuhkan')}</h2>`+As.map((a,i)=>`<div class="card" data-a style="padding:18px 24px;display:grid;grid-template-columns:56px 1fr;gap:18px;align-items:center"><b style="font-size:44px;color:var(--lime)">${i+1}</b><div><b style="font-size:27px">${a[0]}</b><div style="font-size:22px;color:var(--mu);margin-top:4px">${a[1]} · ${a[2]}</div></div></div>`).join('');
+  const G=lang==='id'?[['31 Des','Pilot slice live dengan jejak audit'],['Pilot minggu 6','Cakupan ≥ 90%, auto-match ≥ 70%'],['Pilot bulan 3','DSO −15%; putuskan harga normal']]
+    :[['31 Dec','Pilot slice live with audit trail'],['Pilot week 6','Coverage ≥ 90%, auto-match ≥ 70%'],['Pilot month 3','DSO −15%; decide list pricing']];
+  $('gates').innerHTML=G.map(g=>`<div data-a style="display:grid;grid-template-columns:200px 1fr;gap:16px;align-items:center;background:var(--sf);border:2px solid var(--ln);border-radius:14px;padding:14px 20px"><b class="lim" style="font-size:26px">${g[0]}</b><span style="font-size:24px">${g[1]}</span></div>`).join('');
+}
+}
+
+/* jump chips (built once; numbers do not change with language) */
+document.querySelectorAll('.jumps').forEach(j=>{j.style.cssText='display:inline-flex;gap:10px;flex-wrap:wrap';j.innerHTML=j.dataset.j.split(' ').map(n=>`<button data-go="${n}" style="font:800 24px 'Plus Jakarta Sans',system-ui,sans-serif;background:var(--lime);color:var(--bg);border:0;border-radius:12px;width:58px;height:52px;cursor:pointer">${n}</button>`).join('');});
+
+function setup(){
+  S.forEach((s,i)=>{
+    s.querySelectorAll('[data-a]').forEach((e,k)=>e.style.setProperty('--i',k));
+    const a=s.querySelector('.aud');
+    if(a)a.innerHTML=Object.keys(AUD).map(k=>`<span data-k="${k}" style="${(s.dataset.aud||'').includes(k)?'':'opacity:.35'}">${AUD[k]}</span>`).join('')+`<span class="pg" style="font-size:19px;color:var(--mu)">${i+1} / ${N}</span>`;
+  });
+  document.querySelectorAll('.draw').forEach(p=>{try{p.style.setProperty('--len',Math.ceil(p.getTotalLength())+2)}catch(e){}});
+}
+
+/* navigation */
+const jump=$('jump');
+function fillJump(){jump.innerHTML=S.map((s,i)=>`<option value="${i}">${i+1}. ${lens!=='all'&&s.dataset.aud.includes(lens)?'★ ':''}${lang==='id'?s.dataset.ti:s.dataset.title}</option>`).join('');jump.value=cur;}
+function count(s){s.querySelectorAll('[data-count]').forEach(e=>{const to=+e.dataset.count,t0=performance.now(),d=1400;const f=tm=>{const p=Math.min(1,(tm-t0)/d);e.textContent=fmt(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f);});}
+function show(n,back){
+  n=Math.max(0,Math.min(N-1,n));
+  S[cur].classList.remove('on','back');
+  cur=n;const s=S[cur];void s.offsetWidth;
+  s.classList.add('on');if(back)s.classList.add('back');
+  s.querySelectorAll('.aud span[data-k]').forEach(x=>x.classList.toggle('hit',lens!=='all'&&x.dataset.k===lens&&(s.dataset.aud||'').includes(lens)));
+  count(s);
+  $('cnt').textContent=`${cur+1} / ${N}`;
+  document.querySelector('#prog i').style.width=`${(cur+1)/N*100}%`;
+  jump.value=cur;
+  try{history.replaceState(null,'',location.pathname+location.search+'#s'+(cur+1))}catch(e){}
+}
+const next=()=>show(cur+1,false),prev=()=>show(cur-1,true);
+$('bNext').onclick=next;$('bPrev').onclick=prev;$('eNext').onclick=next;$('ePrev').onclick=prev;
+
+/* bottom sheet on small screens */
+const more=$('more'),bMore=$('bMore');
+const setMore=o=>{more.classList.toggle('open',o);bMore.setAttribute('aria-expanded',String(o));};
+bMore.onclick=()=>setMore(!more.classList.contains('open'));
+document.addEventListener('click',e=>{if(more.classList.contains('open')&&!e.target.closest('#more,#bMore')){setMore(false);e.stopPropagation();e.preventDefault();}},true);
+jump.onchange=()=>{show(+jump.value,+jump.value<cur);setMore(false);};
+document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g)show(+g.dataset.go-1,false);});
+document.querySelectorAll('.lens button').forEach(b=>b.onclick=()=>{lens=b.dataset.l;document.querySelectorAll('.lens button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));fillJump();show(cur,false);});
+
+/* theme and language */
+function rebuild(){pal();applyStatic();build();setup();fillJump();show(cur,false);}
+function setTheme(th){
+  theme=th;if(th==='light')document.documentElement.dataset.theme='light';else delete document.documentElement.dataset.theme;
+  document.querySelector('meta[name=theme-color]').content=th==='light'?'#FFFFFF':'#0F1A16';
+  document.querySelectorAll('#themeSeg button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.theme===th)));
+  store.set('avara-deck-theme',th);
+}
+function setLang(l){lang=l;document.querySelectorAll('#langSeg button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===l)));store.set('avara-deck-lang',l);}
+document.querySelectorAll('#themeSeg button').forEach(b=>b.onclick=()=>{setTheme(b.dataset.theme);rebuild();});
+document.querySelectorAll('#langSeg button').forEach(b=>b.onclick=()=>{setLang(b.dataset.lang);rebuild();});
+
+/* full screen: hidden where the browser cannot do it (iPhone Safari) */
+const de=document.documentElement;
+const fsOK=!!(document.fullscreenEnabled||document.webkitFullscreenEnabled);
+if(!fsOK)$('bFull').hidden=true;
+$('bFull').onclick=()=>{try{if(document.fullscreenElement||document.webkitFullscreenElement){(document.exitFullscreen||document.webkitExitFullscreen).call(document)}else{const r=(de.requestFullscreen||de.webkitRequestFullscreen).call(de);if(r&&r.catch)r.catch(()=>{})}}catch(e){}setMore(false);};
+
+/* stage fit and panel hide */
+const stage=$('stage'),app=$('app');
+function fit(){const r=app.getBoundingClientRect();const k=Math.min(r.width/1920,r.height/1080);stage.style.transform=`translate(-50%,-50%) scale(${k})`;}
+function setHide(h){document.body.classList.toggle('hide',h);setMore(false);setTimeout(fit,320);if(!h)setTimeout(()=>$('bNext').focus({preventScroll:true}),0);}
+$('bHide').onclick=()=>setHide(true);
+$('bShow').onclick=()=>setHide(false);
+/* while hidden, tapping the middle of the slide brings the panel back */
+app.addEventListener('click',e=>{if(document.body.classList.contains('hide')&&!e.target.closest('.edge,button,select'))setHide(false);});
+
+document.addEventListener('keydown',e=>{
+  if(e.target.tagName==='SELECT'||e.metaKey||e.ctrlKey||e.altKey)return;
+  const k=e.key;
+  if((k==='Enter'||k===' ')&&e.target.closest('button'))return;
+  if(k==='Escape'){if(more.classList.contains('open'))setMore(false);else if(document.body.classList.contains('hide'))setHide(false);return;}
+  if((k==='ArrowRight'||k==='PageDown'||k==='Enter'||k===' ')&&!e.shiftKey){e.preventDefault();next();}
+  else if(k==='ArrowLeft'||k==='PageUp'||k==='Backspace'||(k===' '&&e.shiftKey)){e.preventDefault();prev();}
+  else if(k==='Home')show(0,true);else if(k==='End')show(N-1,false);
+  else if(k==='h'||k==='H')setHide(!document.body.classList.contains('hide'));
+  else if((k==='f'||k==='F')&&fsOK)$('bFull').click();
+  else if(k==='t'||k==='T'){setTheme(theme==='light'?'dark':'light');rebuild();}
+  else if(k==='l'||k==='L'){setLang(lang==='id'?'en':'id');rebuild();}
+  else if(/^[1-9]$/.test(k))show(+k-1,+k-1<cur);
+});
+
+/* swipe: horizontal only, never from the panel */
+let tx=null,ty=0;
+document.addEventListener('touchstart',e=>{if(e.target.closest('#panel,#bShow')||e.touches.length>1){tx=null;return;}tx=e.touches[0].clientX;ty=e.touches[0].clientY;},{passive:true});
+document.addEventListener('touchend',e=>{if(tx===null)return;const dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)*1.4){setMore(false);(dx<0?next:prev)();}tx=null;},{passive:true});
+
+window.addEventListener('hashchange',()=>{const h=location.hash.match(/^#s(\d+)$/);if(h){const n=Math.min(N,Math.max(1,+h[1]))-1;if(n!==cur)show(n,n<cur);}});
+new ResizeObserver(fit).observe(app);
+window.addEventListener('orientationchange',()=>setTimeout(fit,300));
+setTheme(theme);setLang(lang);
+const m=location.hash.match(/^#s(\d+)$/);
+cur=m?Math.min(N,Math.max(1,+m[1]))-1:0;
+rebuild();fit();
+}
+</script>
+</body>
+</html>
